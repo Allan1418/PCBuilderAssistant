@@ -1,9 +1,7 @@
 # PCBuilderAssistant
-Proyecto de curso de Programacion para Dispositivos Moviles, II Cuatrimestre 2024
 
-Integrantes:
- 
-- Joseph Fabian Cordoba Aguero
-- Axel Jafeth Chacon Solano
-- Anyelo Dario Vargas Merlo
-- Allan Nuñez Brenes
+A new Flutter project.
+
+## Getting Started
+
+FlutterFlow projects are built to run on the Flutter _stable_ release.
