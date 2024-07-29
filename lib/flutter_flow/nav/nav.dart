@@ -72,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const LogginWidget() : const HomePageWidget(),
+          appStateNotifier.loggedIn ? const HomePageWidget() : const LogginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const LogginWidget() : const HomePageWidget(),
+              appStateNotifier.loggedIn ? const HomePageWidget() : const LogginWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -159,6 +159,46 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MyBuild',
           path: '/myBuild',
           builder: (context, params) => const MyBuildWidget(),
+        ),
+        FFRoute(
+          name: 'prueba',
+          path: '/prueba',
+          builder: (context, params) => const PruebaWidget(),
+        ),
+        FFRoute(
+          name: 'RYZEN7700',
+          path: '/ryzen7700',
+          builder: (context, params) => const Ryzen7700Widget(),
+        ),
+        FFRoute(
+          name: 'PreBuildPCCopy',
+          path: '/preBuildPCCopy',
+          builder: (context, params) => const PreBuildPCCopyWidget(),
+        ),
+        FFRoute(
+          name: 'vistaProceAM5',
+          path: '/vistaProceAM5',
+          builder: (context, params) => const VistaProceAM5Widget(),
+        ),
+        FFRoute(
+          name: 'vistaTarjetaMadreAM5',
+          path: '/vistaTarjetaMadreAM5',
+          builder: (context, params) => const VistaTarjetaMadreAM5Widget(),
+        ),
+        FFRoute(
+          name: 'vistaProceAM4',
+          path: '/vistaProceAM4',
+          builder: (context, params) => const VistaProceAM4Widget(),
+        ),
+        FFRoute(
+          name: 'vistaTarjetaMadreAM4',
+          path: '/vistaTarjetaMadreAM4',
+          builder: (context, params) => const VistaTarjetaMadreAM4Widget(),
+        ),
+        FFRoute(
+          name: 'vistaCases',
+          path: '/vistaCases',
+          builder: (context, params) => const VistaCasesWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -329,7 +369,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/loggin';
           }
           return null;
         },

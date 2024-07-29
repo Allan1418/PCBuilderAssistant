@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -29,13 +30,13 @@ class _SignupWidgetState extends State<SignupWidget> {
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
+    _model.confirmPasswordTextController ??= TextEditingController();
     _model.textFieldFocusNode5 ??= FocusNode();
   }
 
@@ -242,7 +243,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           25.0, 25.0, 25.0, 25.0),
                       child: TextFormField(
-                        controller: _model.textController3,
+                        controller: _model.emailTextController,
                         focusNode: _model.textFieldFocusNode3,
                         autofocus: true,
                         obscureText: false,
@@ -294,7 +295,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        validator: _model.textController3Validator
+                        validator: _model.emailTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -309,10 +310,10 @@ class _SignupWidgetState extends State<SignupWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           25.0, 25.0, 25.0, 25.0),
                       child: TextFormField(
-                        controller: _model.textController4,
+                        controller: _model.passwordTextController,
                         focusNode: _model.textFieldFocusNode4,
                         autofocus: true,
-                        obscureText: false,
+                        obscureText: !_model.passwordVisibility1,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle:
@@ -356,12 +357,25 @@ class _SignupWidgetState extends State<SignupWidget> {
                           prefixIcon: const Icon(
                             Icons.password_sharp,
                           ),
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => _model.passwordVisibility1 =
+                                  !_model.passwordVisibility1,
+                            ),
+                            focusNode: FocusNode(skipTraversal: true),
+                            child: Icon(
+                              _model.passwordVisibility1
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              size: 22,
+                            ),
+                          ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        validator: _model.textController4Validator
+                        validator: _model.passwordTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -376,10 +390,10 @@ class _SignupWidgetState extends State<SignupWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           25.0, 25.0, 25.0, 25.0),
                       child: TextFormField(
-                        controller: _model.textController5,
+                        controller: _model.confirmPasswordTextController,
                         focusNode: _model.textFieldFocusNode5,
                         autofocus: true,
-                        obscureText: false,
+                        obscureText: !_model.passwordVisibility2,
                         decoration: InputDecoration(
                           labelText: 'Confirm Password',
                           labelStyle:
@@ -423,12 +437,25 @@ class _SignupWidgetState extends State<SignupWidget> {
                           prefixIcon: const Icon(
                             Icons.password_sharp,
                           ),
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => _model.passwordVisibility2 =
+                                  !_model.passwordVisibility2,
+                            ),
+                            focusNode: FocusNode(skipTraversal: true),
+                            child: Icon(
+                              _model.passwordVisibility2
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              size: 22,
+                            ),
+                          ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        validator: _model.textController5Validator
+                        validator: _model.confirmPasswordTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -487,8 +514,30 @@ class _SignupWidgetState extends State<SignupWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           25.0, 25.0, 25.0, 25.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          GoRouter.of(context).prepareAuthEvent();
+                          if (_model.passwordTextController.text !=
+                              _model.confirmPasswordTextController.text) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Passwords don\'t match!',
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+
+                          final user = await authManager.createAccountWithEmail(
+                            context,
+                            _model.emailTextController.text,
+                            _model.passwordTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          context.goNamedAuth('HomePage', context.mounted);
                         },
                         text: 'Save',
                         options: FFButtonOptions(

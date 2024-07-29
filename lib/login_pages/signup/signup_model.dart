@@ -16,21 +16,27 @@ class SignupModel extends FlutterFlowModel<SignupWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
+  TextEditingController? emailTextController;
+  String? Function(BuildContext, String?)? emailTextControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
+  TextEditingController? passwordTextController;
+  late bool passwordVisibility1;
+  String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
+  TextEditingController? confirmPasswordTextController;
+  late bool passwordVisibility2;
+  String? Function(BuildContext, String?)?
+      confirmPasswordTextControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passwordVisibility1 = false;
+    passwordVisibility2 = false;
+  }
 
   @override
   void dispose() {
@@ -42,12 +48,12 @@ class SignupModel extends FlutterFlowModel<SignupWidget> {
     textController2?.dispose();
 
     textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    emailTextController?.dispose();
 
     textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    passwordTextController?.dispose();
 
     textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    confirmPasswordTextController?.dispose();
   }
 }

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -23,10 +24,10 @@ class _LogginWidgetState extends State<LogginWidget> {
     super.initState();
     _model = createModel(context, () => LogginModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
@@ -112,7 +113,7 @@ class _LogginWidgetState extends State<LogginWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           50.0, 50.0, 50.0, 25.0),
                       child: TextFormField(
-                        controller: _model.textController1,
+                        controller: _model.emailTextController,
                         focusNode: _model.textFieldFocusNode1,
                         autofocus: true,
                         obscureText: false,
@@ -164,7 +165,7 @@ class _LogginWidgetState extends State<LogginWidget> {
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        validator: _model.textController1Validator
+                        validator: _model.emailTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -179,7 +180,7 @@ class _LogginWidgetState extends State<LogginWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           50.0, 25.0, 50.0, 50.0),
                       child: TextFormField(
-                        controller: _model.textController2,
+                        controller: _model.passwordTextController,
                         focusNode: _model.textFieldFocusNode2,
                         autofocus: true,
                         obscureText: !_model.passwordVisibility,
@@ -244,7 +245,7 @@ class _LogginWidgetState extends State<LogginWidget> {
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        validator: _model.textController2Validator
+                        validator: _model.passwordTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -258,8 +259,19 @@ class _LogginWidgetState extends State<LogginWidget> {
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          GoRouter.of(context).prepareAuthEvent();
+
+                          final user = await authManager.signInWithEmail(
+                            context,
+                            _model.emailTextController.text,
+                            _model.passwordTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          context.goNamedAuth('HomePage', context.mounted);
                         },
                         text: 'Login',
                         options: FFButtonOptions(
