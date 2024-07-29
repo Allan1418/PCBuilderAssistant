@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "373550327785",
+    "project_id": "pcbuilderassistant-b68f6",
+    "storage_bucket": "pcbuilderassistant-b68f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373550327785:android:5c510e0ca660e618f10d78",
+        "android_client_info": {
+          "package_name": "com.mycompany.pcbuilderassistant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARiFQMiRhhp-GmKl5EXUhMQ42jpo9IVxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
