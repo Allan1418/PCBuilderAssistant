@@ -61,8 +61,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           ),
           actions: [
             FFButtonWidget(
-              onPressed: () {
-                print('Button pressed ...');
+              onPressed: () async {
+                context.pushNamed('Profile');
               },
               text: '',
               icon: const Icon(
@@ -123,7 +123,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         alignment: const AlignmentDirectional(1.0, 1.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 30.0, 20.0, 0.0),
+                              0.0, 30.0, 30.0, 20.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               await showModalBottomSheet(
@@ -187,8 +187,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 40.0, 0.0, 40.0),
                         child: Text(
                           'Page recommendations',
                           style:
@@ -207,10 +207,40 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.zero,
-                        scrollDirection: Axis.vertical,
-                        children: const [],
+                      child: Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 30.0, 0.0, 0.0),
+                          child: ListView(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://www.computerlounge.co.nz/data/media/images/systems-assets/landingpage/build-from-scratch.png',
+                                  width: 300.0,
+                                  height: 268.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 50.0, 0.0, 0.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    'https://png.pngitem.com/pimgs/s/494-4943503_best-i9-9900ks-gaming-pc-build-2020-pc.png',
+                                    width: 203.0,
+                                    height: 273.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],

@@ -204,13 +204,23 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 25.0, 0.0, 25.0),
-                        child: Text(
-                          'Back',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.safePop();
+                          },
+                          child: Text(
+                            'Back',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
                         ),
                       ),
                     ),
