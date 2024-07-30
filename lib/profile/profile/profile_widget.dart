@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -134,7 +135,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        'https://i.pinimg.com/236x/f0/9a/f4/f09af49ce8e2b8848069824cfbba4790.jpg',
+                        'https://i.pinimg.com/236x/5c/e4/4e/5ce44e1670d956c89c8c9860d700ecfb.jpg',
                         width: 138.0,
                         height: 200.0,
                         fit: BoxFit.fitWidth,
@@ -263,9 +264,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: 'Address data',
+                      text: 'My Builds',
                       icon: const Icon(
-                        Icons.map,
+                        Icons.build,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
@@ -294,12 +295,45 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        Function() navigate = () {};
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Cerrar Sesion'),
+                                  content:
+                                      const Text('Seguro que quieres cerrar sesion'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: const Text('Confirm'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
+                        if (confirmDialogResponse) {
+                          GoRouter.of(context).prepareAuthEvent();
+                          await authManager.signOut();
+                          GoRouter.of(context).clearRedirectLocation();
+
+                          navigate = () =>
+                              context.goNamedAuth('HomePage', context.mounted);
+                        }
+
+                        navigate();
                       },
-                      text: 'My Builds',
+                      text: 'Log Out',
                       icon: const Icon(
-                        Icons.build,
+                        Icons.logout,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
