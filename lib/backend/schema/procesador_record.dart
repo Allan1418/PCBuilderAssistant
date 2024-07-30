@@ -15,17 +15,29 @@ class ProcesadorRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "nombre" field.
-  String? _nombre;
-  String get nombre => _nombre ?? '';
-  bool hasNombre() => _nombre != null;
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  bool hasName() => _name != null;
+
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
+
+  // "socket" field.
+  String? _socket;
+  String get socket => _socket ?? '';
+  bool hasSocket() => _socket != null;
 
   void _initializeFields() {
-    _nombre = snapshotData['nombre'] as String?;
+    _name = snapshotData['name'] as String?;
+    _image = snapshotData['image'] as String?;
+    _socket = snapshotData['socket'] as String?;
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('Procesador');
+      FirebaseFirestore.instance.collection('procesador');
 
   static Stream<ProcesadorRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => ProcesadorRecord.fromSnapshot(s));
@@ -59,11 +71,15 @@ class ProcesadorRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createProcesadorRecordData({
-  String? nombre,
+  String? name,
+  String? image,
+  String? socket,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'nombre': nombre,
+      'name': name,
+      'image': image,
+      'socket': socket,
     }.withoutNulls,
   );
 
@@ -75,11 +91,14 @@ class ProcesadorRecordDocumentEquality implements Equality<ProcesadorRecord> {
 
   @override
   bool equals(ProcesadorRecord? e1, ProcesadorRecord? e2) {
-    return e1?.nombre == e2?.nombre;
+    return e1?.name == e2?.name &&
+        e1?.image == e2?.image &&
+        e1?.socket == e2?.socket;
   }
 
   @override
-  int hash(ProcesadorRecord? e) => const ListEquality().hash([e?.nombre]);
+  int hash(ProcesadorRecord? e) =>
+      const ListEquality().hash([e?.name, e?.image, e?.socket]);
 
   @override
   bool isValidKey(Object? o) => o is ProcesadorRecord;

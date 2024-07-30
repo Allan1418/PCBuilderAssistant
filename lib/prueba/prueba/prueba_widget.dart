@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -101,14 +100,8 @@ class _PruebaWidgetState extends State<PruebaWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('RYZEN7700');
-
-                      await ProcesadorRecord.collection
-                          .doc()
-                          .set(createProcesadorRecordData(
-                            nombre: 'aaaa',
-                          ));
+                    onPressed: () {
+                      print('Button pressed ...');
                     },
                     text: 'Button',
                     options: FFButtonOptions(

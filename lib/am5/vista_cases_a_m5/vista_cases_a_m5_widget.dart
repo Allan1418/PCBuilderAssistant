@@ -3,27 +3,25 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'vista_tarjeta_madre_a_m4_model.dart';
-export 'vista_tarjeta_madre_a_m4_model.dart';
+import 'vista_cases_a_m5_model.dart';
+export 'vista_cases_a_m5_model.dart';
 
-class VistaTarjetaMadreAM4Widget extends StatefulWidget {
-  const VistaTarjetaMadreAM4Widget({super.key});
+class VistaCasesAM5Widget extends StatefulWidget {
+  const VistaCasesAM5Widget({super.key});
 
   @override
-  State<VistaTarjetaMadreAM4Widget> createState() =>
-      _VistaTarjetaMadreAM4WidgetState();
+  State<VistaCasesAM5Widget> createState() => _VistaCasesAM5WidgetState();
 }
 
-class _VistaTarjetaMadreAM4WidgetState
-    extends State<VistaTarjetaMadreAM4Widget> {
-  late VistaTarjetaMadreAM4Model _model;
+class _VistaCasesAM5WidgetState extends State<VistaCasesAM5Widget> {
+  late VistaCasesAM5Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => VistaTarjetaMadreAM4Model());
+    _model = createModel(context, () => VistaCasesAM5Model());
   }
 
   @override
@@ -129,7 +127,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://m.media-amazon.com/images/I/71-V1AMTW9L._AC_SL1500_.jpg',
+                                          'https://m.media-amazon.com/images/I/512OMFL8aoL.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -145,7 +143,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'GIGABYTE X570S AORUS PRO AX',
+                                          'NZXT H510 - CA-H510B-B1 - Compact ATX Mid-Tower PC Gaming Case',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -217,7 +215,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://www.asus.com/media/global/products/5awsickoptqkycdu/P_setting_xxx_0_90_end_692.png',
+                                          'https://m.media-amazon.com/images/I/81b64GTxJcL.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -233,7 +231,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'Asus AM4 TUF Gaming X570-Plus ATX',
+                                          'Cooler Master HAF 700 E-ATX High Airflow PC Case, Mesh Front Panel',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -305,7 +303,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://i.ebayimg.com/images/g/8KgAAOSwj01kk9ol/s-l1600.jpg',
+                                          'https://thermaltakeusa.com/cdn/shop/files/CA-1B6-00F1WN-04_20_224e4c915d5948f19a8d62d9363ed743.jpg?v=1691138010&width=1445',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -321,7 +319,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'GIGABYTE X570S AORUS Elite AX',
+                                          'Thermaltake Core V71 Tempered Glass Edition E-ATX Full',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -393,7 +391,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://www.gigabyte.com/FileUpload/Global/KeyFeature/1944/innergigabyteimages/box.png',
+                                          'https://i5.walmartimages.com/asr/9819b4c0-52b9-4444-b32f-72f88c569e85_1.87aaa928c0eb27a8bd1e53e333e19bb3.jpeg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -409,7 +407,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'GIGABYTE X570SI AORUS PRO AX',
+                                          'Corsair Obsidian 750D Airflow Edition, Full Tower ATX Case',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -481,7 +479,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://static.gigabyte.com/StaticFile/Image/Global/88049754a7baa0b6477858343f152503/Product/29321/Png',
+                                          'https://m.media-amazon.com/images/I/513+ooaKrRL.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -497,7 +495,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'GIGABYTE X570S AORUS Master ',
+                                          'ASUS ROG Crosshair X670E Extreme',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -569,7 +567,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://www.asus.com/media/global/products/aDvY2vRFhs99nFdl/P_setting_xxx_0_90_end_500.png',
+                                          'https://m.media-amazon.com/images/I/71TODE9A5vL._AC_SL1380_.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -585,7 +583,7 @@ class _VistaTarjetaMadreAM4WidgetState
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'Asus Prime X570-Pro Ryzen 3 AM4',
+                                          'Thermaltake View 71 RGB 4-Sided Tempered Glass Vertical GPU Modular',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

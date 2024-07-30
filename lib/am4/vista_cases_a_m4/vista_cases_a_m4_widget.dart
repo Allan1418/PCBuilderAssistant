@@ -3,25 +3,25 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'vista_cases_model.dart';
-export 'vista_cases_model.dart';
+import 'vista_cases_a_m4_model.dart';
+export 'vista_cases_a_m4_model.dart';
 
-class VistaCasesWidget extends StatefulWidget {
-  const VistaCasesWidget({super.key});
+class VistaCasesAM4Widget extends StatefulWidget {
+  const VistaCasesAM4Widget({super.key});
 
   @override
-  State<VistaCasesWidget> createState() => _VistaCasesWidgetState();
+  State<VistaCasesAM4Widget> createState() => _VistaCasesAM4WidgetState();
 }
 
-class _VistaCasesWidgetState extends State<VistaCasesWidget> {
-  late VistaCasesModel _model;
+class _VistaCasesAM4WidgetState extends State<VistaCasesAM4Widget> {
+  late VistaCasesAM4Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => VistaCasesModel());
+    _model = createModel(context, () => VistaCasesAM4Model());
   }
 
   @override
@@ -127,7 +127,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://m.media-amazon.com/images/I/512OMFL8aoL.jpg',
+                                          'https://m.media-amazon.com/images/I/719dkqqyBjL._AC_UF894,1000_QL80_.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -143,7 +143,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'NZXT H510 - CA-H510B-B1 - Compact ATX Mid-Tower PC Gaming Case',
+                                          'NZXT H6 Flow RGB | CC-H61FB-R1 | Compact Dual-Chamber Mid-Tower Airflow Case',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -215,7 +215,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://m.media-amazon.com/images/I/81b64GTxJcL.jpg',
+                                          'https://www.datocms-assets.com/34299/1666138916-h5-flow-hero-black.png',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -231,7 +231,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'Cooler Master HAF 700 E-ATX High Airflow PC Case, Mesh Front Panel',
+                                          'NZXT H5 Flow RGB Compact ATX Mid-Tower PC Gaming Case',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -303,7 +303,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://thermaltakeusa.com/cdn/shop/files/CA-1B6-00F1WN-04_20_224e4c915d5948f19a8d62d9363ed743.jpg?v=1691138010&width=1445',
+                                          'https://www.datocms-assets.com/34299/1680239164-h5-flow-rgb-white-system.png',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -319,7 +319,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'Thermaltake Core V71 Tempered Glass Edition E-ATX Full',
+                                          'NZXT H5 Flow RGB Compact ATX Mid-Tower PC Gaming Case ',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -391,7 +391,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://i5.walmartimages.com/asr/9819b4c0-52b9-4444-b32f-72f88c569e85_1.87aaa928c0eb27a8bd1e53e333e19bb3.jpeg',
+                                          'https://m.media-amazon.com/images/I/71YVEUXCEeL._AC_SL1500_.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -407,7 +407,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'Corsair Obsidian 750D Airflow Edition, Full Tower ATX Case',
+                                          'NZXT H6 Flow | CC-H61FB-01 |',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -479,7 +479,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://dlcdnwebimgs.asus.com/files/media/C9A82328-9130-467A-AEAC-A57B1FC2A6C4/v2/img/kv/pd.png',
+                                          'https://m.media-amazon.com/images/I/41l6GRC9zqL.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -495,7 +495,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'ASUS ROG Crosshair X670E Extreme',
+                                          'NZXT H5 Elite Compact ATX Mid-Tower PC Gaming Case',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -567,7 +567,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
-                                          'https://cyberteamcr.com/wp-content/uploads/2023/03/PRIME-X670E-PRO-WIFI-CSM-1.webp',
+                                          'https://m.media-amazon.com/images/I/71Ddh-VKMaL._AC_SL1500_.jpg',
                                           width: 100.0,
                                           height: 129.0,
                                           fit: BoxFit.contain,
@@ -583,7 +583,7 @@ class _VistaCasesWidgetState extends State<VistaCasesWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 10.0, 0.0),
                                         child: Text(
-                                          'ASUS Prime X670E-PRO WiFi Socket AM5',
+                                          'NZXT H510 Flow - CA-H52FW-01 - Compact ATX Mid-Tower PC Gaming Case',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

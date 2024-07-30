@@ -26,38 +26,38 @@ class BuildsRecord extends FirestoreRecord {
   bool hasNombrebuild() => _nombrebuild != null;
 
   // "procesador" field.
-  String? _procesador;
-  String get procesador => _procesador ?? '';
+  DocumentReference? _procesador;
+  DocumentReference? get procesador => _procesador;
   bool hasProcesador() => _procesador != null;
 
   // "tarjetamadre" field.
-  String? _tarjetamadre;
-  String get tarjetamadre => _tarjetamadre ?? '';
+  DocumentReference? _tarjetamadre;
+  DocumentReference? get tarjetamadre => _tarjetamadre;
   bool hasTarjetamadre() => _tarjetamadre != null;
 
   // "ram" field.
-  String? _ram;
-  String get ram => _ram ?? '';
+  DocumentReference? _ram;
+  DocumentReference? get ram => _ram;
   bool hasRam() => _ram != null;
 
   // "casepc" field.
-  String? _casepc;
-  String get casepc => _casepc ?? '';
+  DocumentReference? _casepc;
+  DocumentReference? get casepc => _casepc;
   bool hasCasepc() => _casepc != null;
 
-  // "fuente" field.
-  String? _fuente;
-  String get fuente => _fuente ?? '';
-  bool hasFuente() => _fuente != null;
+  // "psu" field.
+  DocumentReference? _psu;
+  DocumentReference? get psu => _psu;
+  bool hasPsu() => _psu != null;
 
   void _initializeFields() {
     _usuario = snapshotData['usuario'] as DocumentReference?;
     _nombrebuild = snapshotData['nombrebuild'] as String?;
-    _procesador = snapshotData['procesador'] as String?;
-    _tarjetamadre = snapshotData['tarjetamadre'] as String?;
-    _ram = snapshotData['ram'] as String?;
-    _casepc = snapshotData['casepc'] as String?;
-    _fuente = snapshotData['fuente'] as String?;
+    _procesador = snapshotData['procesador'] as DocumentReference?;
+    _tarjetamadre = snapshotData['tarjetamadre'] as DocumentReference?;
+    _ram = snapshotData['ram'] as DocumentReference?;
+    _casepc = snapshotData['casepc'] as DocumentReference?;
+    _psu = snapshotData['psu'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -96,11 +96,11 @@ class BuildsRecord extends FirestoreRecord {
 Map<String, dynamic> createBuildsRecordData({
   DocumentReference? usuario,
   String? nombrebuild,
-  String? procesador,
-  String? tarjetamadre,
-  String? ram,
-  String? casepc,
-  String? fuente,
+  DocumentReference? procesador,
+  DocumentReference? tarjetamadre,
+  DocumentReference? ram,
+  DocumentReference? casepc,
+  DocumentReference? psu,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -110,7 +110,7 @@ Map<String, dynamic> createBuildsRecordData({
       'tarjetamadre': tarjetamadre,
       'ram': ram,
       'casepc': casepc,
-      'fuente': fuente,
+      'psu': psu,
     }.withoutNulls,
   );
 
@@ -128,7 +128,7 @@ class BuildsRecordDocumentEquality implements Equality<BuildsRecord> {
         e1?.tarjetamadre == e2?.tarjetamadre &&
         e1?.ram == e2?.ram &&
         e1?.casepc == e2?.casepc &&
-        e1?.fuente == e2?.fuente;
+        e1?.psu == e2?.psu;
   }
 
   @override
@@ -139,7 +139,7 @@ class BuildsRecordDocumentEquality implements Equality<BuildsRecord> {
         e?.tarjetamadre,
         e?.ram,
         e?.casepc,
-        e?.fuente
+        e?.psu
       ]);
 
   @override

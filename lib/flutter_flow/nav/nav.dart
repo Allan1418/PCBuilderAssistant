@@ -131,14 +131,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EditProductWidget(),
         ),
         FFRoute(
-          name: 'NewUser',
-          path: '/newUser',
-          builder: (context, params) => const NewUserWidget(),
-        ),
-        FFRoute(
-          name: 'SingleUser',
-          path: '/singleUser',
-          builder: (context, params) => const SingleUserWidget(),
+          name: 'Profile',
+          path: '/profile',
+          builder: (context, params) => const ProfileWidget(),
         ),
         FFRoute(
           name: 'OurRecomendation',
@@ -196,9 +191,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const VistaTarjetaMadreAM4Widget(),
         ),
         FFRoute(
-          name: 'vistaCases',
-          path: '/vistaCases',
-          builder: (context, params) => const VistaCasesWidget(),
+          name: 'vistaCasesAM5',
+          path: '/vistaCasesAM5',
+          builder: (context, params) => const VistaCasesAM5Widget(),
+        ),
+        FFRoute(
+          name: 'vistaCasesAM4',
+          path: '/vistaCasesAM4',
+          builder: (context, params) => const VistaCasesAM4Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
