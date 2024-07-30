@@ -537,7 +537,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                             return;
                           }
 
-                          context.goNamedAuth('HomePage', context.mounted);
+                          context.pushNamedAuth('Loggin', context.mounted);
                         },
                         text: 'Save',
                         options: FFButtonOptions(

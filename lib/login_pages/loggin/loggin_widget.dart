@@ -309,13 +309,23 @@ class _LogginWidgetState extends State<LogginWidget> {
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 50.0, 0.0, 25.0),
-                        child: Text(
-                          'you forgot your password?',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('RestorPassword');
+                          },
+                          child: Text(
+                            'you forgot your password?',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
                         ),
                       ),
                     ),
@@ -331,14 +341,24 @@ class _LogginWidgetState extends State<LogginWidget> {
                       child: Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                        child: Text(
-                          'Create an account',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    letterSpacing: 0.0,
-                                  ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('Signup');
+                          },
+                          child: Text(
+                            'Create an account',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
                         ),
                       ),
                     ),

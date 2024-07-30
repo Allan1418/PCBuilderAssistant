@@ -15,11 +15,6 @@ class RamRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  int? _id;
-  int get id => _id ?? 0;
-  bool hasId() => _id != null;
-
   // "nombre" field.
   String? _nombre;
   String get nombre => _nombre ?? '';
@@ -35,11 +30,16 @@ class RamRecord extends FirestoreRecord {
   String get tiporam => _tiporam ?? '';
   bool hasTiporam() => _tiporam != null;
 
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
+
   void _initializeFields() {
-    _id = castToType<int>(snapshotData['id']);
     _nombre = snapshotData['nombre'] as String?;
     _frecuencia = snapshotData['frecuencia'] as String?;
     _tiporam = snapshotData['tiporam'] as String?;
+    _image = snapshotData['image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -76,17 +76,17 @@ class RamRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createRamRecordData({
-  int? id,
   String? nombre,
   String? frecuencia,
   String? tiporam,
+  String? image,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'nombre': nombre,
       'frecuencia': frecuencia,
       'tiporam': tiporam,
+      'image': image,
     }.withoutNulls,
   );
 
@@ -98,15 +98,15 @@ class RamRecordDocumentEquality implements Equality<RamRecord> {
 
   @override
   bool equals(RamRecord? e1, RamRecord? e2) {
-    return e1?.id == e2?.id &&
-        e1?.nombre == e2?.nombre &&
+    return e1?.nombre == e2?.nombre &&
         e1?.frecuencia == e2?.frecuencia &&
-        e1?.tiporam == e2?.tiporam;
+        e1?.tiporam == e2?.tiporam &&
+        e1?.image == e2?.image;
   }
 
   @override
-  int hash(RamRecord? e) =>
-      const ListEquality().hash([e?.id, e?.nombre, e?.frecuencia, e?.tiporam]);
+  int hash(RamRecord? e) => const ListEquality()
+      .hash([e?.nombre, e?.frecuencia, e?.tiporam, e?.image]);
 
   @override
   bool isValidKey(Object? o) => o is RamRecord;

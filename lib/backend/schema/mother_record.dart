@@ -15,11 +15,6 @@ class MotherRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  int? _id;
-  int get id => _id ?? 0;
-  bool hasId() => _id != null;
-
   // "nombre" field.
   String? _nombre;
   String get nombre => _nombre ?? '';
@@ -35,17 +30,22 @@ class MotherRecord extends FirestoreRecord {
   String get tiporam => _tiporam ?? '';
   bool hasTiporam() => _tiporam != null;
 
-  // "tamano" field.
-  String? _tamano;
-  String get tamano => _tamano ?? '';
-  bool hasTamano() => _tamano != null;
+  // "size" field.
+  String? _size;
+  String get size => _size ?? '';
+  bool hasSize() => _size != null;
+
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
 
   void _initializeFields() {
-    _id = castToType<int>(snapshotData['id']);
     _nombre = snapshotData['nombre'] as String?;
     _tiposocket = snapshotData['tiposocket'] as String?;
     _tiporam = snapshotData['tiporam'] as String?;
-    _tamano = snapshotData['tamano'] as String?;
+    _size = snapshotData['size'] as String?;
+    _image = snapshotData['image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -82,19 +82,19 @@ class MotherRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createMotherRecordData({
-  int? id,
   String? nombre,
   String? tiposocket,
   String? tiporam,
-  String? tamano,
+  String? size,
+  String? image,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'nombre': nombre,
       'tiposocket': tiposocket,
       'tiporam': tiporam,
-      'tamano': tamano,
+      'size': size,
+      'image': image,
     }.withoutNulls,
   );
 
@@ -106,16 +106,16 @@ class MotherRecordDocumentEquality implements Equality<MotherRecord> {
 
   @override
   bool equals(MotherRecord? e1, MotherRecord? e2) {
-    return e1?.id == e2?.id &&
-        e1?.nombre == e2?.nombre &&
+    return e1?.nombre == e2?.nombre &&
         e1?.tiposocket == e2?.tiposocket &&
         e1?.tiporam == e2?.tiporam &&
-        e1?.tamano == e2?.tamano;
+        e1?.size == e2?.size &&
+        e1?.image == e2?.image;
   }
 
   @override
   int hash(MotherRecord? e) => const ListEquality()
-      .hash([e?.id, e?.nombre, e?.tiposocket, e?.tiporam, e?.tamano]);
+      .hash([e?.nombre, e?.tiposocket, e?.tiporam, e?.size, e?.image]);
 
   @override
   bool isValidKey(Object? o) => o is MotherRecord;

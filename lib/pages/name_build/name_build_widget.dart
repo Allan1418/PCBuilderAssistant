@@ -156,12 +156,25 @@ class _NameBuildWidgetState extends State<NameBuildWidget> {
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await BuildsRecord.collection
-                              .doc()
+                          var buildsRecordReference =
+                              BuildsRecord.collection.doc();
+                          await buildsRecordReference
                               .set(createBuildsRecordData(
+                            usuario: currentUserReference,
+                            nombrebuild: _model.textController.text,
+                          ));
+                          _model.pasi = BuildsRecord.getDocumentFromData(
+                              createBuildsRecordData(
                                 usuario: currentUserReference,
                                 nombrebuild: _model.textController.text,
-                              ));
+                              ),
+                              buildsRecordReference);
+                          FFAppState().buildActual = _model.pasi?.reference;
+                          setState(() {});
+
+                          context.pushNamed('PreBuildPC');
+
+                          setState(() {});
                         },
                         text: 'Crear',
                         options: FFButtonOptions(

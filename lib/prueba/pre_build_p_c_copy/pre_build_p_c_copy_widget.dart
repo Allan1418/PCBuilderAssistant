@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -215,15 +214,8 @@ class _PreBuildPCCopyWidgetState extends State<PreBuildPCCopyWidget> {
                                     ),
                                   ),
                                   FFButtonWidget(
-                                    onPressed: () async {
-                                      await ProcesadorRecord.collection
-                                          .doc()
-                                          .set(createProcesadorRecordData(
-                                            nombre: _model
-                                                .ryzenpruebaTextController.text,
-                                          ));
-
-                                      context.pushNamed('RYZEN7700');
+                                    onPressed: () {
+                                      print('Button pressed ...');
                                     },
                                     text: 'Select',
                                     options: FFButtonOptions(
