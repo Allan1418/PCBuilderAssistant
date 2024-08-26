@@ -50,6 +50,21 @@ class BuildsRecord extends FirestoreRecord {
   DocumentReference? get psu => _psu;
   bool hasPsu() => _psu != null;
 
+  // "cpucooler" field.
+  DocumentReference? _cpucooler;
+  DocumentReference? get cpucooler => _cpucooler;
+  bool hasCpucooler() => _cpucooler != null;
+
+  // "storage" field.
+  DocumentReference? _storage;
+  DocumentReference? get storage => _storage;
+  bool hasStorage() => _storage != null;
+
+  // "gpu" field.
+  DocumentReference? _gpu;
+  DocumentReference? get gpu => _gpu;
+  bool hasGpu() => _gpu != null;
+
   void _initializeFields() {
     _usuario = snapshotData['usuario'] as DocumentReference?;
     _nombrebuild = snapshotData['nombrebuild'] as String?;
@@ -58,6 +73,9 @@ class BuildsRecord extends FirestoreRecord {
     _ram = snapshotData['ram'] as DocumentReference?;
     _casepc = snapshotData['casepc'] as DocumentReference?;
     _psu = snapshotData['psu'] as DocumentReference?;
+    _cpucooler = snapshotData['cpucooler'] as DocumentReference?;
+    _storage = snapshotData['storage'] as DocumentReference?;
+    _gpu = snapshotData['gpu'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -101,6 +119,9 @@ Map<String, dynamic> createBuildsRecordData({
   DocumentReference? ram,
   DocumentReference? casepc,
   DocumentReference? psu,
+  DocumentReference? cpucooler,
+  DocumentReference? storage,
+  DocumentReference? gpu,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -111,6 +132,9 @@ Map<String, dynamic> createBuildsRecordData({
       'ram': ram,
       'casepc': casepc,
       'psu': psu,
+      'cpucooler': cpucooler,
+      'storage': storage,
+      'gpu': gpu,
     }.withoutNulls,
   );
 
@@ -128,7 +152,10 @@ class BuildsRecordDocumentEquality implements Equality<BuildsRecord> {
         e1?.tarjetamadre == e2?.tarjetamadre &&
         e1?.ram == e2?.ram &&
         e1?.casepc == e2?.casepc &&
-        e1?.psu == e2?.psu;
+        e1?.psu == e2?.psu &&
+        e1?.cpucooler == e2?.cpucooler &&
+        e1?.storage == e2?.storage &&
+        e1?.gpu == e2?.gpu;
   }
 
   @override
@@ -139,7 +166,10 @@ class BuildsRecordDocumentEquality implements Equality<BuildsRecord> {
         e?.tarjetamadre,
         e?.ram,
         e?.casepc,
-        e?.psu
+        e?.psu,
+        e?.cpucooler,
+        e?.storage,
+        e?.gpu
       ]);
 
   @override

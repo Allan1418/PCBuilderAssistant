@@ -25,10 +25,10 @@ class _LogginWidgetState extends State<LogginWidget> {
     _model = createModel(context, () => LogginModel());
 
     _model.emailTextController ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.emailFocusNode ??= FocusNode();
 
     _model.passwordTextController ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.passwordFocusNode ??= FocusNode();
   }
 
   @override
@@ -41,9 +41,7 @@ class _LogginWidgetState extends State<LogginWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -114,11 +112,11 @@ class _LogginWidgetState extends State<LogginWidget> {
                           50.0, 50.0, 50.0, 25.0),
                       child: TextFormField(
                         controller: _model.emailTextController,
-                        focusNode: _model.textFieldFocusNode1,
+                        focusNode: _model.emailFocusNode,
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Username',
+                          labelText: 'Email',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -181,7 +179,7 @@ class _LogginWidgetState extends State<LogginWidget> {
                           50.0, 25.0, 50.0, 50.0),
                       child: TextFormField(
                         controller: _model.passwordTextController,
-                        focusNode: _model.textFieldFocusNode2,
+                        focusNode: _model.passwordFocusNode,
                         autofocus: true,
                         obscureText: !_model.passwordVisibility,
                         decoration: InputDecoration(
@@ -271,7 +269,7 @@ class _LogginWidgetState extends State<LogginWidget> {
                             return;
                           }
 
-                          context.goNamedAuth('Loggin', context.mounted);
+                          context.goNamedAuth('HomePage', context.mounted);
                         },
                         text: 'Login',
                         options: FFButtonOptions(

@@ -19,7 +19,7 @@ export '/no_lo_estamos_usando/edit_product/edit_product_widget.dart'
 export '/profile/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/our_recomendation/our_recomendation_widget.dart'
     show OurRecomendationWidget;
-export '/products/pre_build_p_c/pre_build_p_c_widget.dart'
+export '/login_pages/pre_build_p_c/pre_build_p_c_widget.dart'
     show PreBuildPCWidget;
 export '/no_lo_estamos_usando/save_build_p_c/save_build_p_c_widget.dart'
     show SaveBuildPCWidget;
@@ -42,3 +42,16 @@ export '/no_lo_estamos_usando/am5/vista_cases_a_m5/vista_cases_a_m5_widget.dart'
     show VistaCasesAM5Widget;
 export '/no_lo_estamos_usando/am4/vista_cases_a_m4/vista_cases_a_m4_widget.dart'
     show VistaCasesAM4Widget;
+export '/profile/edit_profile/edit_profile_widget.dart' show EditProfileWidget;
+export '/admin/processor_new/processor_new_widget.dart' show ProcessorNewWidget;
+export '/admin/processor_edit/processor_edit_widget.dart'
+    show ProcessorEditWidget;
+export '/admin/gpu_new/gpu_new_widget.dart' show GpuNewWidget;
+export '/admin/ram_new/ram_new_widget.dart' show RamNewWidget;
+export '/admin/case_new/case_new_widget.dart' show CaseNewWidget;
+export '/admin/motherboard_new/motherboard_new_widget.dart'
+    show MotherboardNewWidget;
+export '/admin/psu_new/psu_new_widget.dart' show PsuNewWidget;
+export '/admin/storage_new/storage_new_widget.dart' show StorageNewWidget;
+export '/admin/processor_list/processor_list_widget.dart'
+    show ProcessorListWidget;

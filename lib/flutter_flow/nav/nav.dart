@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -72,13 +73,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const LogginWidget() : const HomePageWidget(),
+          appStateNotifier.loggedIn ? const HomePageWidget() : const LogginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const LogginWidget() : const HomePageWidget(),
+              appStateNotifier.loggedIn ? const HomePageWidget() : const LogginWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -199,6 +200,64 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'vistaCasesAM4',
           path: '/vistaCasesAM4',
           builder: (context, params) => const VistaCasesAM4Widget(),
+        ),
+        FFRoute(
+          name: 'editProfile',
+          path: '/editProfile',
+          builder: (context, params) => const EditProfileWidget(),
+        ),
+        FFRoute(
+          name: 'ProcessorNew',
+          path: '/processorNew',
+          builder: (context, params) => const ProcessorNewWidget(),
+        ),
+        FFRoute(
+          name: 'ProcessorEdit',
+          path: '/processorEdit',
+          asyncParams: {
+            'processor': getDoc(['procesador'], ProcesadorRecord.fromSnapshot),
+          },
+          builder: (context, params) => ProcessorEditWidget(
+            processor: params.getParam(
+              'processor',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'GpuNew',
+          path: '/gpuNew',
+          builder: (context, params) => const GpuNewWidget(),
+        ),
+        FFRoute(
+          name: 'RamNew',
+          path: '/ramNew',
+          builder: (context, params) => const RamNewWidget(),
+        ),
+        FFRoute(
+          name: 'CaseNew',
+          path: '/caseNew',
+          builder: (context, params) => const CaseNewWidget(),
+        ),
+        FFRoute(
+          name: 'MotherboardNew',
+          path: '/motherboardNew',
+          builder: (context, params) => const MotherboardNewWidget(),
+        ),
+        FFRoute(
+          name: 'PsuNew',
+          path: '/psuNew',
+          builder: (context, params) => const PsuNewWidget(),
+        ),
+        FFRoute(
+          name: 'StorageNew',
+          path: '/storageNew',
+          builder: (context, params) => const StorageNewWidget(),
+        ),
+        FFRoute(
+          name: 'ProcessorList',
+          path: '/processorList',
+          builder: (context, params) => const ProcessorListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -369,7 +428,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/loggin';
           }
           return null;
         },

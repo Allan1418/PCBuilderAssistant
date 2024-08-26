@@ -8,17 +8,20 @@ class PreBuildPCModel extends FlutterFlowModel<PreBuildPCWidget> {
 
   DocumentReference? actualCpu;
 
+  DocumentReference? actualMother;
+
+  ProcesadorRecord? cpuMos;
+
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Read Document] action in PreBuildPC widget.
   BuildsRecord? salidaRead;
+  // Stores action output result for [Backend Call - Read Document] action in PreBuildPC widget.
+  ProcesadorRecord? salidaProce;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

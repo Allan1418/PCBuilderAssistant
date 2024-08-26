@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -23,8 +24,8 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
     super.initState();
     _model = createModel(context, () => RestorPasswordModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.restoreEmailTextController ??= TextEditingController();
+    _model.restoreEmailFocusNode ??= FocusNode();
   }
 
   @override
@@ -37,9 +38,7 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -100,8 +99,8 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           25.0, 25.0, 25.0, 25.0),
                       child: TextFormField(
-                        controller: _model.textController,
-                        focusNode: _model.textFieldFocusNode,
+                        controller: _model.restoreEmailTextController,
+                        focusNode: _model.restoreEmailFocusNode,
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -152,8 +151,8 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        validator:
-                            _model.textControllerValidator.asValidator(context),
+                        validator: _model.restoreEmailTextControllerValidator
+                            .asValidator(context),
                       ),
                     ),
                   ),
@@ -166,8 +165,21 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          if (_model.restoreEmailTextController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Email required!',
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+                          await authManager.resetPassword(
+                            email: _model.restoreEmailTextController.text,
+                            context: context,
+                          );
                         },
                         text: 'Restore',
                         options: FFButtonOptions(
