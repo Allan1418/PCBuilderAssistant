@@ -42,33 +42,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryText,
           automaticallyImplyLeading: false,
-          leading: FFButtonWidget(
-            onPressed: () async {
-              context.pushNamed('HomePage');
-            },
-            text: 'Button',
-            icon: const Icon(
-              Icons.arrow_back,
-              size: 25.0,
-            ),
-            options: FFButtonOptions(
-              height: 40.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: const Color(0x004B39EF),
-              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
-                    color: const Color(0xFF7E6FFF),
-                    letterSpacing: 0.0,
-                  ),
-              elevation: 3.0,
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
           title: GradientText(
             'PC Builder Assistant',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -143,12 +116,42 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 30.0, 5.0, 20.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed('MyBuilds');
+                        },
+                        text: 'My Builds',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: Align(
                         alignment: const AlignmentDirectional(1.0, 1.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 30.0, 30.0, 20.0),
+                              5.0, 30.0, 5.0, 20.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               await showModalBottomSheet(
@@ -199,30 +202,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                       ),
                     ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('ProcessorList');
-                      },
-                      text: 'Button',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 30.0, 5.0, 20.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed('ProcessorList');
+                        },
+                        text: 'Admin',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ],

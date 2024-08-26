@@ -10,6 +10,7 @@ import '/componentes_parte_p_c/vista_tarjeta_madre/vista_tarjeta_madre_widget.da
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/name_build_replace/name_build_replace_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +51,51 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
       // llamado proce
       _model.salidaProce = await ProcesadorRecord.getDocumentOnce(
           _model.salidaRead!.procesador!);
+      // seteo cpuMos
       _model.cpuMos = _model.salidaProce;
+      setState(() {});
+      // llamado tarjeta
+      _model.salidaTarjeta =
+          await MotherRecord.getDocumentOnce(_model.salidaRead!.tarjetamadre!);
+      // seteo tarjeta
+      _model.motherMos = _model.salidaTarjeta;
+      setState(() {});
+      // llamado ram
+      _model.salidaRam =
+          await RamRecord.getDocumentOnce(_model.salidaRead!.ram!);
+      // seteo ram
+      _model.ramMos = _model.salidaRam;
+      setState(() {});
+      // llamado gpu
+      _model.salidaGpu =
+          await GpuRecord.getDocumentOnce(_model.salidaRead!.gpu!);
+      // seteo gpu
+      _model.gpuMos = _model.salidaGpu;
+      setState(() {});
+      // llamado case
+      _model.salidaCase =
+          await CasepcRecord.getDocumentOnce(_model.salidaRead!.casepc!);
+      // seteo case
+      _model.caseMos = _model.salidaCase;
+      setState(() {});
+      // llamado cooler
+      _model.salidaCooler =
+          await CpucoolerRecord.getDocumentOnce(_model.salidaRead!.cpucooler!);
+      // seteo cooler
+      _model.coolerMos = _model.salidaCooler;
+      setState(() {});
+      // llamado psu
+      _model.salidaPsu =
+          await PsuRecord.getDocumentOnce(_model.salidaRead!.psu!);
+      // seteo psu
+      _model.psuMos = _model.salidaPsu;
+      setState(() {});
+      // llamado Storage
+      _model.salidaStorage =
+          await StorageRecord.getDocumentOnce(_model.salidaRead!.storage!);
+      // seteo storage
+      _model.storageMos = _model.salidaStorage;
+      setState(() {});
     });
   }
 
@@ -152,6 +197,27 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    child: Text(
+                      valueOrDefault<String>(
+                        _model.salidaRead?.nombrebuild,
+                        'nombrebuild',
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 16.0,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
               Expanded(
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -285,20 +351,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.motherMos?.image,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'MotherBoard',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'MotherBoard',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.motherMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: (_model.actualCpu?.id == null ||
@@ -381,20 +467,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.ramMos?.image,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'RAM',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'RAM',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.ramMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: (_model.actualMother?.id ==
@@ -477,20 +583,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.gpuMos?.image,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'GPU',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'GPU',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.gpuMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
@@ -562,20 +688,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.caseMos?.imagen,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'Case',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Case',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.caseMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
@@ -647,20 +793,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.coolerMos?.image,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'CPU Cooler',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'CPU Cooler',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.coolerMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
@@ -732,20 +898,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.psuMos?.image,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'Power Supply',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Power Supply',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.psuMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
@@ -817,20 +1003,40 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/71/600',
+                                      valueOrDefault<String>(
+                                        _model.storageMos?.image,
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png',
+                                      ),
                                       width: 100.0,
                                       height: 200.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(
-                                    'Storage',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Storage',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          _model.storageMos?.nombre,
+                                          'Escoge uno!',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
@@ -893,77 +1099,117 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                   ],
                 ),
               ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () => FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: SizedBox(
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.3,
+                                      child: const NameBuildReplaceWidget(),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          text: 'Cambiar Nombre',
+                          icon: const Icon(
+                            Icons.drive_file_rename_outline_sharp,
+                            size: 15.0,
+                          ),
+                          options: FFButtonOptions(
+                            width: 250.0,
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 10.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 10.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed('HomePage');
-                        },
-                        text: 'Our Recomendation',
-                        icon: const Icon(
-                          Icons.shopping_cart_checkout_sharp,
-                          size: 15.0,
-                        ),
-                        options: FFButtonOptions(
-                          height: 40.0,
+                    Expanded(
+                      child: Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('HomePage');
+                            },
+                            text: 'Save',
+                            icon: const Icon(
+                              Icons.save,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              width: 250.0,
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 10.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
-                        },
-                        text: 'Pre Build PC',
-                        icon: const Icon(
-                          Icons.computer_outlined,
-                          size: 15.0,
-                        ),
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),

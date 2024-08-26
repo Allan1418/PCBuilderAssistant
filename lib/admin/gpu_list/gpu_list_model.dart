@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'processor_list_widget.dart' show ProcessorListWidget;
+import 'gpu_list_widget.dart' show GpuListWidget;
 import 'package:flutter/material.dart';
 
-class ProcessorListModel extends FlutterFlowModel<ProcessorListWidget> {
+class GpuListModel extends FlutterFlowModel<GpuListWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -152,9 +152,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SaveBuildPCWidget(),
         ),
         FFRoute(
-          name: 'MyBuild',
-          path: '/myBuild',
-          builder: (context, params) => const MyBuildWidget(),
+          name: 'MyBuilds',
+          path: '/myBuilds',
+          builder: (context, params) => const MyBuildsWidget(),
         ),
         FFRoute(
           name: 'prueba',
@@ -258,6 +258,114 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProcessorList',
           path: '/processorList',
           builder: (context, params) => const ProcessorListWidget(),
+        ),
+        FFRoute(
+          name: 'RamList',
+          path: '/ramList',
+          builder: (context, params) => const RamListWidget(),
+        ),
+        FFRoute(
+          name: 'StorageList',
+          path: '/storageList',
+          builder: (context, params) => const StorageListWidget(),
+        ),
+        FFRoute(
+          name: 'PsuList',
+          path: '/psuList',
+          builder: (context, params) => const PsuListWidget(),
+        ),
+        FFRoute(
+          name: 'GpuList',
+          path: '/gpuList',
+          builder: (context, params) => const GpuListWidget(),
+        ),
+        FFRoute(
+          name: 'MotherboardList',
+          path: '/motherboardList',
+          builder: (context, params) => const MotherboardListWidget(),
+        ),
+        FFRoute(
+          name: 'CaseList',
+          path: '/caseList',
+          builder: (context, params) => const CaseListWidget(),
+        ),
+        FFRoute(
+          name: 'PsuEdit',
+          path: '/psuEdit',
+          asyncParams: {
+            'psu': getDoc(['psu'], PsuRecord.fromSnapshot),
+          },
+          builder: (context, params) => PsuEditWidget(
+            psu: params.getParam(
+              'psu',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'RamEdit',
+          path: '/ramEdit',
+          asyncParams: {
+            'ram': getDoc(['ram'], RamRecord.fromSnapshot),
+          },
+          builder: (context, params) => RamEditWidget(
+            ram: params.getParam(
+              'ram',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'StorageEdit',
+          path: '/storageEdit',
+          asyncParams: {
+            'storage': getDoc(['storage'], StorageRecord.fromSnapshot),
+          },
+          builder: (context, params) => StorageEditWidget(
+            storage: params.getParam(
+              'storage',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'MotherboardEdit',
+          path: '/motherboardEdit',
+          asyncParams: {
+            'motherboard': getDoc(['mother'], MotherRecord.fromSnapshot),
+          },
+          builder: (context, params) => MotherboardEditWidget(
+            motherboard: params.getParam(
+              'motherboard',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'GpuEdit',
+          path: '/gpuEdit',
+          asyncParams: {
+            'gpu': getDoc(['gpu'], GpuRecord.fromSnapshot),
+          },
+          builder: (context, params) => GpuEditWidget(
+            gpu: params.getParam(
+              'gpu',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'CaseEdit',
+          path: '/caseEdit',
+          asyncParams: {
+            'pcCase': getDoc(['casepc'], CasepcRecord.fromSnapshot),
+          },
+          builder: (context, params) => CaseEditWidget(
+            pcCase: params.getParam(
+              'pcCase',
+              ParamType.Document,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

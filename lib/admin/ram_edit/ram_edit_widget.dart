@@ -9,37 +9,38 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'processor_edit_model.dart';
-export 'processor_edit_model.dart';
+import 'ram_edit_model.dart';
+export 'ram_edit_model.dart';
 
-class ProcessorEditWidget extends StatefulWidget {
-  const ProcessorEditWidget({
+class RamEditWidget extends StatefulWidget {
+  const RamEditWidget({
     super.key,
-    required this.processor,
+    required this.ram,
   });
 
-  final ProcesadorRecord? processor;
+  final RamRecord? ram;
 
   @override
-  State<ProcessorEditWidget> createState() => _ProcessorEditWidgetState();
+  State<RamEditWidget> createState() => _RamEditWidgetState();
 }
 
-class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
-  late ProcessorEditModel _model;
+class _RamEditWidgetState extends State<RamEditWidget> {
+  late RamEditModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProcessorEditModel());
+    _model = createModel(context, () => RamEditModel());
 
-    _model.txtProcessorNameTextController ??=
-        TextEditingController(text: widget.processor?.name);
-    _model.txtProcessorNameFocusNode ??= FocusNode();
+    _model.txtRamNameTextController ??=
+        TextEditingController(text: widget.ram?.nombre);
+    _model.txtRamNameFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.txtFrequencyRamTextController ??=
+        TextEditingController(text: widget.ram?.frecuencia);
+    _model.txtFrequencyRamFocusNode ??= FocusNode();
   }
 
   @override
@@ -123,7 +124,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: Text(
-                          'Edit Processor',
+                          'New Ram',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -137,88 +138,77 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          widget.processor!.image,
-                          width: 191.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
+                  Expanded(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 20.0, 0.0, 20.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: FlutterFlowTheme.of(context).primary,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 46.0,
+                          fillColor: FlutterFlowTheme.of(context).accent1,
+                          icon: Icon(
+                            Icons.image,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            final selectedMedia =
+                                await selectMediaWithSourceBottomSheet(
+                              context: context,
+                              allowPhoto: true,
+                            );
+                            if (selectedMedia != null &&
+                                selectedMedia.every((m) => validateFileFormat(
+                                    m.storagePath, context))) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
+
+                              var downloadUrls = <String>[];
+                              try {
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                          blurHash: m.blurHash,
+                                        ))
+                                    .toList();
+
+                                downloadUrls = (await Future.wait(
+                                  selectedMedia.map(
+                                    (m) async => await uploadData(
+                                        m.storagePath, m.bytes),
+                                  ),
+                                ))
+                                    .where((u) => u != null)
+                                    .map((u) => u!)
+                                    .toList();
+                              } finally {
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                      selectedMedia.length &&
+                                  downloadUrls.length == selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                  _model.uploadedFileUrl = downloadUrls.first;
+                                });
+                              } else {
+                                setState(() {});
+                                return;
+                              }
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FlutterFlowIconButton(
-                        borderColor: FlutterFlowTheme.of(context).primary,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).accent1,
-                        icon: Icon(
-                          Icons.image,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
-                        ),
-                        onPressed: () async {
-                          final selectedMedia =
-                              await selectMediaWithSourceBottomSheet(
-                            context: context,
-                            allowPhoto: true,
-                          );
-                          if (selectedMedia != null &&
-                              selectedMedia.every((m) =>
-                                  validateFileFormat(m.storagePath, context))) {
-                            setState(() => _model.isDataUploading = true);
-                            var selectedUploadedFiles = <FFUploadedFile>[];
-
-                            var downloadUrls = <String>[];
-                            try {
-                              selectedUploadedFiles = selectedMedia
-                                  .map((m) => FFUploadedFile(
-                                        name: m.storagePath.split('/').last,
-                                        bytes: m.bytes,
-                                        height: m.dimensions?.height,
-                                        width: m.dimensions?.width,
-                                        blurHash: m.blurHash,
-                                      ))
-                                  .toList();
-
-                              downloadUrls = (await Future.wait(
-                                selectedMedia.map(
-                                  (m) async =>
-                                      await uploadData(m.storagePath, m.bytes),
-                                ),
-                              ))
-                                  .where((u) => u != null)
-                                  .map((u) => u!)
-                                  .toList();
-                            } finally {
-                              _model.isDataUploading = false;
-                            }
-                            if (selectedUploadedFiles.length ==
-                                    selectedMedia.length &&
-                                downloadUrls.length == selectedMedia.length) {
-                              setState(() {
-                                _model.uploadedLocalFile =
-                                    selectedUploadedFiles.first;
-                                _model.uploadedFileUrl = downloadUrls.first;
-                              });
-                            } else {
-                              setState(() {});
-                              return;
-                            }
-                          }
-                        },
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -234,8 +224,8 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * 0.8,
                           child: TextFormField(
-                            controller: _model.txtProcessorNameTextController,
-                            focusNode: _model.txtProcessorNameFocusNode,
+                            controller: _model.txtRamNameTextController,
+                            focusNode: _model.txtRamNameFocusNode,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -287,8 +277,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                            validator: _model
-                                .txtProcessorNameTextControllerValidator
+                            validator: _model.txtRamNameTextControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -309,12 +298,12 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * 0.8,
                           child: TextFormField(
-                            controller: _model.textController2,
-                            focusNode: _model.textFieldFocusNode,
+                            controller: _model.txtFrequencyRamTextController,
+                            focusNode: _model.txtFrequencyRamFocusNode,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Label here...',
+                              labelText: 'Insert Frequency',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -362,7 +351,8 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                            validator: _model.textController2Validator
+                            validator: _model
+                                .txtFrequencyRamTextControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -381,13 +371,13 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: FlutterFlowDropDown<String>(
-                          controller: _model.txtSocketValueController ??=
+                          controller: _model.txtTipoRamValueController ??=
                               FormFieldController<String>(
-                            _model.txtSocketValue ??= widget.processor?.socket,
+                            _model.txtTipoRamValue ??= widget.ram?.tiporam,
                           ),
-                          options: const ['am4', 'am5'],
+                          options: const ['ddr4', 'ddr5', ''],
                           onChanged: (val) =>
-                              setState(() => _model.txtSocketValue = val),
+                              setState(() => _model.txtTipoRamValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.8,
                           height: 56.0,
                           textStyle:
@@ -395,7 +385,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0.0,
                                   ),
-                          hintText: widget.processor?.socket,
+                          hintText: widget.ram?.tiporam,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -430,18 +420,20 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                             20.0, 20.0, 20.0, 20.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await widget.processor!.reference
-                                .update(createProcesadorRecordData(
-                              name: _model.txtProcessorNameTextController.text,
+                            await widget.ram!.reference
+                                .update(createRamRecordData(
+                              nombre: _model.txtRamNameTextController.text,
+                              frecuencia:
+                                  _model.txtFrequencyRamTextController.text,
+                              tiporam: _model.txtTipoRamValue,
                               image: _model.uploadedFileUrl,
-                              socket: _model.txtSocketValue,
                             ));
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('Update'),
-                                  content: const Text('Processor update'),
+                                  title: const Text('Success'),
+                                  content: const Text('Product Save'),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
@@ -453,7 +445,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                               },
                             );
 
-                            context.pushNamed('ProcessorList');
+                            context.pushNamed('RamList');
                           },
                           text: 'Save',
                           options: FFButtonOptions(

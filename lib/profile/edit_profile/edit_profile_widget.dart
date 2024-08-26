@@ -394,42 +394,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     .asValidator(context),
               ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Restore',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
             Align(
               alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
@@ -483,12 +447,29 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       );
                       setState(() {});
 
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text(
+                                'Te enviemoas un link para completar el cambio del correo'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
                       context.pushNamed('Profile');
                     } else {
                       context.pushNamed('editProfile');
                     }
                   },
-                  text: 'Save Changes',
+                  text: 'Guardar Cambios',
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
