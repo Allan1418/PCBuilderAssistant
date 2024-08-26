@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 class LogginModel extends FlutterFlowModel<LogginWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
+  // State field(s) for Email widget.
+  FocusNode? emailFocusNode;
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
+  // State field(s) for password widget.
+  FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
@@ -23,11 +22,10 @@ class LogginModel extends FlutterFlowModel<LogginWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
+    emailFocusNode?.dispose();
     emailTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
+    passwordFocusNode?.dispose();
     passwordTextController?.dispose();
   }
 }

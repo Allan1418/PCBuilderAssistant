@@ -132,8 +132,14 @@ class _VistaTarjetaMadreWidgetState extends State<VistaTarjetaMadreWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 20.0, 20.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              await FFAppState()
+                                  .buildActual!
+                                  .update(createBuildsRecordData(
+                                    tarjetamadre: columnMotherRecord.reference,
+                                  ));
+
+                              context.pushNamed('PreBuildPC');
                             },
                             text: 'Button',
                             options: FFButtonOptions(

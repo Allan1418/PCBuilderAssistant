@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'vista_r_a_m_model.dart';
 export 'vista_r_a_m_model.dart';
 
@@ -26,6 +28,16 @@ class _VistaRAMWidgetState extends State<VistaRAMWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VistaRAMModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.salida1 =
+          await BuildsRecord.getDocumentOnce(FFAppState().buildActual!);
+      _model.salida2 =
+          await MotherRecord.getDocumentOnce(_model.salida1!.tarjetamadre!);
+      _model.actualMother = _model.salida2;
+      setState(() {});
+    });
   }
 
   @override
@@ -37,6 +49,8 @@ class _VistaRAMWidgetState extends State<VistaRAMWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
@@ -44,7 +58,12 @@ class _VistaRAMWidgetState extends State<VistaRAMWidget> {
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: StreamBuilder<List<RamRecord>>(
-        stream: queryRamRecord(),
+        stream: queryRamRecord(
+          queryBuilder: (ramRecord) => ramRecord.where(
+            'tiporam',
+            isEqualTo: _model.actualMother?.tiporam,
+          ),
+        ),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -116,8 +135,14 @@ class _VistaRAMWidgetState extends State<VistaRAMWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 20.0, 20.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              await FFAppState()
+                                  .buildActual!
+                                  .update(createBuildsRecordData(
+                                    ram: columnRamRecord.reference,
+                                  ));
+
+                              context.pushNamed('PreBuildPC');
                             },
                             text: 'Button',
                             options: FFButtonOptions(

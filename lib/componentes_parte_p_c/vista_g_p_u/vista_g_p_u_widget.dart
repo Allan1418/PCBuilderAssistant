@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'vista_g_p_u_model.dart';
 export 'vista_g_p_u_model.dart';
 
@@ -37,6 +38,8 @@ class _VistaGPUWidgetState extends State<VistaGPUWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
@@ -116,8 +119,14 @@ class _VistaGPUWidgetState extends State<VistaGPUWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 20.0, 20.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              await FFAppState()
+                                  .buildActual!
+                                  .update(createBuildsRecordData(
+                                    gpu: columnGpuRecord.reference,
+                                  ));
+
+                              context.pushNamed('PreBuildPC');
                             },
                             text: 'Button',
                             options: FFButtonOptions(

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class PreBuildPCCopyModel extends FlutterFlowModel<PreBuildPCCopyWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for ryzenprueba widget.
   FocusNode? ryzenpruebaFocusNode;
   TextEditingController? ryzenpruebaTextController;
@@ -16,7 +15,6 @@ class PreBuildPCCopyModel extends FlutterFlowModel<PreBuildPCCopyWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     ryzenpruebaFocusNode?.dispose();
     ryzenpruebaTextController?.dispose();
   }
