@@ -23,7 +23,7 @@ export '/login_pages/pre_build_p_c/pre_build_p_c_widget.dart'
     show PreBuildPCWidget;
 export '/no_lo_estamos_usando/save_build_p_c/save_build_p_c_widget.dart'
     show SaveBuildPCWidget;
-export '/pages/my_build/my_build_widget.dart' show MyBuildWidget;
+export '/pages/my_builds/my_builds_widget.dart' show MyBuildsWidget;
 export '/no_lo_estamos_usando/prueba/prueba/prueba_widget.dart'
     show PruebaWidget;
 export '/no_lo_estamos_usando/prueba/ryzen7700/ryzen7700_widget.dart'
@@ -55,3 +55,17 @@ export '/admin/psu_new/psu_new_widget.dart' show PsuNewWidget;
 export '/admin/storage_new/storage_new_widget.dart' show StorageNewWidget;
 export '/admin/processor_list/processor_list_widget.dart'
     show ProcessorListWidget;
+export '/admin/ram_list/ram_list_widget.dart' show RamListWidget;
+export '/admin/storage_list/storage_list_widget.dart' show StorageListWidget;
+export '/admin/psu_list/psu_list_widget.dart' show PsuListWidget;
+export '/admin/gpu_list/gpu_list_widget.dart' show GpuListWidget;
+export '/admin/motherboard_list/motherboard_list_widget.dart'
+    show MotherboardListWidget;
+export '/admin/case_list/case_list_widget.dart' show CaseListWidget;
+export '/admin/psu_edit/psu_edit_widget.dart' show PsuEditWidget;
+export '/admin/ram_edit/ram_edit_widget.dart' show RamEditWidget;
+export '/admin/storage_edit/storage_edit_widget.dart' show StorageEditWidget;
+export '/admin/motherboard_edit/motherboard_edit_widget.dart'
+    show MotherboardEditWidget;
+export '/admin/gpu_edit/gpu_edit_widget.dart' show GpuEditWidget;
+export '/admin/case_edit/case_edit_widget.dart' show CaseEditWidget;

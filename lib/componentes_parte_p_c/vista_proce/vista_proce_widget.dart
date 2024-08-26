@@ -125,7 +125,7 @@ class _VistaProceWidgetState extends State<VistaProceWidget> {
                                   procesador: columnProcesadorRecord.reference,
                                 ));
 
-                            context.goNamed('PreBuildPC');
+                            context.pushNamed('PreBuildPC');
                           },
                           text: 'Button',
                           options: FFButtonOptions(

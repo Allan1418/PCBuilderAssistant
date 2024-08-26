@@ -172,7 +172,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed('MyBuild');
+                            context.pushNamed('MyBuilds');
                           },
                           text: 'My Builds',
                           icon: const Icon(
@@ -200,6 +200,102 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 30.0, 0.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text(
+                                                'Seguro que deseas cambiar la contraseña?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirmar'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text(
+                                          'Te enviamos un link a tu corre'),
+                                      content: const Text(
+                                          'Podras modificar la contraseña'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                                if (currentUserEmail.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        'Email required!',
+                                      ),
+                                    ),
+                                  );
+                                  return;
+                                }
+                                await authManager.resetPassword(
+                                  email: currentUserEmail,
+                                  context: context,
+                                );
+                              } else {
+                                context.safePop();
+                              }
+                            },
+                            text: 'Cambiar Contraseña',
+                            icon: const Icon(
+                              Icons.wifi_password,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
                       ),
@@ -246,42 +342,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           text: 'Log Out',
                           icon: const Icon(
                             Icons.logout,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: MediaQuery.sizeOf(context).width * 0.5,
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: 'E-mail',
-                          icon: const Icon(
-                            Icons.email_sharp,
                             size: 15.0,
                           ),
                           options: FFButtonOptions(

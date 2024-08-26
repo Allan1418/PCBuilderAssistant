@@ -166,22 +166,67 @@ class _RestorPasswordWidgetState extends State<RestorPasswordWidget> {
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          if (_model.restoreEmailTextController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'Email required!',
-                                ),
-                              ),
+                          var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: const Text(
+                                        'Seguro que deseas cambiar la contraseña?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: const Text('Cancelar'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: const Text('Confirmar'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                              false;
+                          if (confirmDialogResponse) {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Te enviamos un link a tu corre'),
+                                  content:
+                                      const Text('Podras modificar la contraseña'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
-                            return;
+                            if (_model
+                                .restoreEmailTextController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Email required!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
+                            await authManager.resetPassword(
+                              email: _model.restoreEmailTextController.text,
+                              context: context,
+                            );
+                            context.safePop();
+                          } else {
+                            context.safePop();
                           }
-                          await authManager.resetPassword(
-                            email: _model.restoreEmailTextController.text,
-                            context: context,
-                          );
                         },
-                        text: 'Restore',
+                        text: 'Cambiar Contraseña',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(

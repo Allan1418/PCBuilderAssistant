@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'my_build_widget.dart' show MyBuildWidget;
+import 'storage_list_widget.dart' show StorageListWidget;
 import 'package:flutter/material.dart';
 
-class MyBuildModel extends FlutterFlowModel<MyBuildWidget> {
+class StorageListModel extends FlutterFlowModel<StorageListWidget> {
   @override
   void initState(BuildContext context) {}
 

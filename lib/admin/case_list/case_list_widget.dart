@@ -3,25 +3,25 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'processor_list_model.dart';
-export 'processor_list_model.dart';
+import 'case_list_model.dart';
+export 'case_list_model.dart';
 
-class ProcessorListWidget extends StatefulWidget {
-  const ProcessorListWidget({super.key});
+class CaseListWidget extends StatefulWidget {
+  const CaseListWidget({super.key});
 
   @override
-  State<ProcessorListWidget> createState() => _ProcessorListWidgetState();
+  State<CaseListWidget> createState() => _CaseListWidgetState();
 }
 
-class _ProcessorListWidgetState extends State<ProcessorListWidget> {
-  late ProcessorListModel _model;
+class _CaseListWidgetState extends State<CaseListWidget> {
+  late CaseListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProcessorListModel());
+    _model = createModel(context, () => CaseListModel());
   }
 
   @override
@@ -59,8 +59,8 @@ class _ProcessorListWidgetState extends State<ProcessorListWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              StreamBuilder<List<ProcesadorRecord>>(
-                stream: queryProcesadorRecord(),
+              StreamBuilder<List<CasepcRecord>>(
+                stream: queryCasepcRecord(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -76,17 +76,16 @@ class _ProcessorListWidgetState extends State<ProcessorListWidget> {
                       ),
                     );
                   }
-                  List<ProcesadorRecord> listViewProcesadorRecordList =
-                      snapshot.data!;
+                  List<CasepcRecord> listViewCasepcRecordList = snapshot.data!;
 
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: listViewProcesadorRecordList.length,
+                    itemCount: listViewCasepcRecordList.length,
                     itemBuilder: (context, listViewIndex) {
-                      final listViewProcesadorRecord =
-                          listViewProcesadorRecordList[listViewIndex];
+                      final listViewCasepcRecord =
+                          listViewCasepcRecordList[listViewIndex];
                       return Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -103,7 +102,7 @@ class _ProcessorListWidgetState extends State<ProcessorListWidget> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: Image.network(
-                                    listViewProcesadorRecord.image,
+                                    listViewCasepcRecord.imagen,
                                     width: 130.0,
                                     height: 200.0,
                                     fit: BoxFit.cover,
@@ -115,7 +114,7 @@ class _ProcessorListWidgetState extends State<ProcessorListWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  listViewProcesadorRecord.name,
+                                  listViewCasepcRecord.nombre,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -156,16 +155,15 @@ class _ProcessorListWidgetState extends State<ProcessorListWidget> {
                                       FFButtonWidget(
                                         onPressed: () async {
                                           context.pushNamed(
-                                            'ProcessorEdit',
+                                            'CaseEdit',
                                             queryParameters: {
-                                              'processor': serializeParam(
-                                                listViewProcesadorRecord,
+                                              'pcCase': serializeParam(
+                                                listViewCasepcRecord,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'processor':
-                                                  listViewProcesadorRecord,
+                                              'pcCase': listViewCasepcRecord,
                                             },
                                           );
                                         },

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'processor_list_widget.dart' show ProcessorListWidget;
+import 'case_list_widget.dart' show CaseListWidget;
 import 'package:flutter/material.dart';
 
-class ProcessorListModel extends FlutterFlowModel<ProcessorListWidget> {
+class CaseListModel extends FlutterFlowModel<CaseListWidget> {
   @override
   void initState(BuildContext context) {}
 

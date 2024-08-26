@@ -9,37 +9,34 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'processor_edit_model.dart';
-export 'processor_edit_model.dart';
+import 'case_edit_model.dart';
+export 'case_edit_model.dart';
 
-class ProcessorEditWidget extends StatefulWidget {
-  const ProcessorEditWidget({
+class CaseEditWidget extends StatefulWidget {
+  const CaseEditWidget({
     super.key,
-    required this.processor,
+    required this.pcCase,
   });
 
-  final ProcesadorRecord? processor;
+  final CasepcRecord? pcCase;
 
   @override
-  State<ProcessorEditWidget> createState() => _ProcessorEditWidgetState();
+  State<CaseEditWidget> createState() => _CaseEditWidgetState();
 }
 
-class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
-  late ProcessorEditModel _model;
+class _CaseEditWidgetState extends State<CaseEditWidget> {
+  late CaseEditModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProcessorEditModel());
+    _model = createModel(context, () => CaseEditModel());
 
-    _model.txtProcessorNameTextController ??=
-        TextEditingController(text: widget.processor?.name);
-    _model.txtProcessorNameFocusNode ??= FocusNode();
-
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.txtCaseNameTextController ??=
+        TextEditingController(text: widget.pcCase?.nombre);
+    _model.txtCaseNameFocusNode ??= FocusNode();
   }
 
   @override
@@ -123,7 +120,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: Text(
-                          'Edit Processor',
+                          'New PC Case',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -137,88 +134,77 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          widget.processor!.image,
-                          width: 191.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
+                  Expanded(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 20.0, 0.0, 20.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: FlutterFlowTheme.of(context).primary,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 46.0,
+                          fillColor: FlutterFlowTheme.of(context).accent1,
+                          icon: Icon(
+                            Icons.image,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            final selectedMedia =
+                                await selectMediaWithSourceBottomSheet(
+                              context: context,
+                              allowPhoto: true,
+                            );
+                            if (selectedMedia != null &&
+                                selectedMedia.every((m) => validateFileFormat(
+                                    m.storagePath, context))) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
+
+                              var downloadUrls = <String>[];
+                              try {
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                          blurHash: m.blurHash,
+                                        ))
+                                    .toList();
+
+                                downloadUrls = (await Future.wait(
+                                  selectedMedia.map(
+                                    (m) async => await uploadData(
+                                        m.storagePath, m.bytes),
+                                  ),
+                                ))
+                                    .where((u) => u != null)
+                                    .map((u) => u!)
+                                    .toList();
+                              } finally {
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                      selectedMedia.length &&
+                                  downloadUrls.length == selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                  _model.uploadedFileUrl = downloadUrls.first;
+                                });
+                              } else {
+                                setState(() {});
+                                return;
+                              }
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FlutterFlowIconButton(
-                        borderColor: FlutterFlowTheme.of(context).primary,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).accent1,
-                        icon: Icon(
-                          Icons.image,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
-                        ),
-                        onPressed: () async {
-                          final selectedMedia =
-                              await selectMediaWithSourceBottomSheet(
-                            context: context,
-                            allowPhoto: true,
-                          );
-                          if (selectedMedia != null &&
-                              selectedMedia.every((m) =>
-                                  validateFileFormat(m.storagePath, context))) {
-                            setState(() => _model.isDataUploading = true);
-                            var selectedUploadedFiles = <FFUploadedFile>[];
-
-                            var downloadUrls = <String>[];
-                            try {
-                              selectedUploadedFiles = selectedMedia
-                                  .map((m) => FFUploadedFile(
-                                        name: m.storagePath.split('/').last,
-                                        bytes: m.bytes,
-                                        height: m.dimensions?.height,
-                                        width: m.dimensions?.width,
-                                        blurHash: m.blurHash,
-                                      ))
-                                  .toList();
-
-                              downloadUrls = (await Future.wait(
-                                selectedMedia.map(
-                                  (m) async =>
-                                      await uploadData(m.storagePath, m.bytes),
-                                ),
-                              ))
-                                  .where((u) => u != null)
-                                  .map((u) => u!)
-                                  .toList();
-                            } finally {
-                              _model.isDataUploading = false;
-                            }
-                            if (selectedUploadedFiles.length ==
-                                    selectedMedia.length &&
-                                downloadUrls.length == selectedMedia.length) {
-                              setState(() {
-                                _model.uploadedLocalFile =
-                                    selectedUploadedFiles.first;
-                                _model.uploadedFileUrl = downloadUrls.first;
-                              });
-                            } else {
-                              setState(() {});
-                              return;
-                            }
-                          }
-                        },
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -234,8 +220,8 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * 0.8,
                           child: TextFormField(
-                            controller: _model.txtProcessorNameTextController,
-                            focusNode: _model.txtProcessorNameFocusNode,
+                            controller: _model.txtCaseNameTextController,
+                            focusNode: _model.txtCaseNameFocusNode,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -287,82 +273,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                            validator: _model
-                                .txtProcessorNameTextControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.8,
-                          child: TextFormField(
-                            controller: _model.textController2,
-                            focusNode: _model.textFieldFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Label here...',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.textController2Validator
+                            validator: _model.txtCaseNameTextControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -381,13 +292,13 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: FlutterFlowDropDown<String>(
-                          controller: _model.txtSocketValueController ??=
+                          controller: _model.txtSizeValueController ??=
                               FormFieldController<String>(
-                            _model.txtSocketValue ??= widget.processor?.socket,
+                            _model.txtSizeValue ??= widget.pcCase?.size,
                           ),
-                          options: const ['am4', 'am5'],
+                          options: const ['atx'],
                           onChanged: (val) =>
-                              setState(() => _model.txtSocketValue = val),
+                              setState(() => _model.txtSizeValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.8,
                           height: 56.0,
                           textStyle:
@@ -395,7 +306,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                                     fontFamily: 'Readex Pro',
                                     letterSpacing: 0.0,
                                   ),
-                          hintText: widget.processor?.socket,
+                          hintText: widget.pcCase?.size,
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -430,18 +341,18 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                             20.0, 20.0, 20.0, 20.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await widget.processor!.reference
-                                .update(createProcesadorRecordData(
-                              name: _model.txtProcessorNameTextController.text,
-                              image: _model.uploadedFileUrl,
-                              socket: _model.txtSocketValue,
+                            await widget.pcCase!.reference
+                                .update(createCasepcRecordData(
+                              imagen: _model.uploadedFileUrl,
+                              size: _model.txtSizeValue,
+                              nombre: _model.txtCaseNameTextController.text,
                             ));
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('Update'),
-                                  content: const Text('Processor update'),
+                                  title: const Text('Success'),
+                                  content: const Text('Product Save'),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
@@ -453,7 +364,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                               },
                             );
 
-                            context.pushNamed('ProcessorList');
+                            context.pushNamed('CaseList');
                           },
                           text: 'Save',
                           options: FFButtonOptions(

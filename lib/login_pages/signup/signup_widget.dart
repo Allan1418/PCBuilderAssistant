@@ -477,8 +477,6 @@ class _SignupWidgetState extends State<SignupWidget> {
                                 email: _model.emailTextController.text,
                                 displayName:
                                     _model.firstnameTextController.text,
-                                password: _model.passwordTextController.text,
-                                photoUrl: '',
                                 phoneNumber: '',
                               ));
 
