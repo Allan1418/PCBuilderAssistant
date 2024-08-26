@@ -1,7 +1,10 @@
 # PCBuilderAssistant
 
-A new Flutter project.
+Proyecto de curso de Programación para Dispositivos Móviles, II Cuatrimestre 2024
 
-## Getting Started
+Integrantes:
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+- Joseph Fabian Córdoba Agüero
+- Ányelo Darío Vargas Merlo
+- Axel Jafeth Chacón Solano
+- Allan Nuñez Brenes
