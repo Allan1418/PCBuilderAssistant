@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'motherboard_edit_model.dart';
 export 'motherboard_edit_model.dart';
@@ -34,6 +35,12 @@ class _MotherboardEditWidgetState extends State<MotherboardEditWidget> {
     super.initState();
     _model = createModel(context, () => MotherboardEditModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.image = widget.motherboard?.image;
+      setState(() {});
+    });
+
     _model.txtMotherBoardNameTextController ??=
         TextEditingController(text: widget.motherboard?.nombre);
     _model.txtMotherBoardNameFocusNode ??= FocusNode();
@@ -56,34 +63,31 @@ class _MotherboardEditWidgetState extends State<MotherboardEditWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryText,
           automaticallyImplyLeading: false,
-          leading: Align(
-            alignment: const AlignmentDirectional(1.0, 0.0),
-            child: FFButtonWidget(
-              onPressed: () async {
-                context.pushNamed('HomePage');
-              },
-              text: '',
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                size: 26.0,
+          leading: FFButtonWidget(
+            onPressed: () async {
+              context.safePop();
+            },
+            text: 'Button',
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 25.0,
+            ),
+            options: FFButtonOptions(
+              height: 40.0,
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: const Color(0x004B39EF),
+              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: 'Readex Pro',
+                    color: const Color(0xFF7E6FFF),
+                    letterSpacing: 0.0,
+                  ),
+              elevation: 3.0,
+              borderSide: const BorderSide(
+                color: Colors.transparent,
+                width: 1.0,
               ),
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0x004B39EF),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 3.0,
-                borderSide: const BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+              borderRadius: BorderRadius.circular(8.0),
             ),
           ),
           title: GradientText(
@@ -101,7 +105,35 @@ class _MotherboardEditWidgetState extends State<MotherboardEditWidget> {
             gradientDirection: GradientDirection.ltr,
             gradientType: GradientType.linear,
           ),
-          actions: const [],
+          actions: [
+            FFButtonWidget(
+              onPressed: () async {
+                context.pushNamed('Profile');
+              },
+              text: '',
+              icon: const Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+              options: FFButtonOptions(
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).primaryText,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Readex Pro',
+                      color: const Color(0xFF75E7FF),
+                      letterSpacing: 0.0,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -120,7 +152,7 @@ class _MotherboardEditWidgetState extends State<MotherboardEditWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: Text(
-                          'New Motherboard',
+                          'Edit Motherboard',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -201,6 +233,9 @@ class _MotherboardEditWidgetState extends State<MotherboardEditWidget> {
                                 return;
                               }
                             }
+
+                            _model.image = _model.uploadedFileUrl;
+                            setState(() {});
                           },
                         ),
                       ),
@@ -447,7 +482,7 @@ class _MotherboardEditWidgetState extends State<MotherboardEditWidget> {
                               tiposocket: _model.txtTipoSocketValue,
                               tiporam: _model.txtTipoRamValue,
                               size: _model.txtSizeValue,
-                              image: _model.uploadedFileUrl,
+                              image: _model.image,
                             ));
                             await showDialog(
                               context: context,

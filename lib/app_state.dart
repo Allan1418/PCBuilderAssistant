@@ -27,4 +27,11 @@ class FFAppState extends ChangeNotifier {
   set buildActual(DocumentReference? value) {
     _buildActual = value;
   }
+
+  DocumentReference? _userFiltro =
+      FirebaseFirestore.instance.doc('/users/6yaVczrBFRQ6jOnrNjh8MC0oySX2');
+  DocumentReference? get userFiltro => _userFiltro;
+  set userFiltro(DocumentReference? value) {
+    _userFiltro = value;
+  }
 }

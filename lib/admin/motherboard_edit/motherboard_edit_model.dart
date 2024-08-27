@@ -4,6 +4,10 @@ import 'motherboard_edit_widget.dart' show MotherboardEditWidget;
 import 'package:flutter/material.dart';
 
 class MotherboardEditModel extends FlutterFlowModel<MotherboardEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;

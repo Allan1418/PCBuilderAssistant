@@ -4,6 +4,10 @@ import 'psu_edit_widget.dart' show PsuEditWidget;
 import 'package:flutter/material.dart';
 
 class PsuEditModel extends FlutterFlowModel<PsuEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;

@@ -97,7 +97,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Edita tu perfil',
+                      'Edit your profile',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: 'Outfit',
@@ -220,7 +220,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   textCapitalization: TextCapitalization.words,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Tu nombre',
+                    labelText: 'Your name',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Readex Pro',
@@ -282,7 +282,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   textCapitalization: TextCapitalization.words,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Numero de telefono',
+                    labelText: 'Phone number',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Readex Pro',
@@ -344,7 +344,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Correo',
+                  labelText: 'Email',
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,

@@ -4,6 +4,10 @@ import 'processor_edit_widget.dart' show ProcessorEditWidget;
 import 'package:flutter/material.dart';
 
 class ProcessorEditModel extends FlutterFlowModel<ProcessorEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;
