@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -23,6 +24,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfileModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      context.pushNamed('OurRecomendations');
+    });
   }
 
   @override
@@ -270,7 +276,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 context.safePop();
                               }
                             },
-                            text: 'Cambiar Contraseña',
+                            text: 'Change Password',
                             icon: const Icon(
                               Icons.wifi_password,
                               size: 15.0,
@@ -383,7 +389,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed('OurRecomendation');
+                            context.pushNamed('OurRecomendations');
                           },
                           text: 'Our Recomendation',
                           icon: const Icon(

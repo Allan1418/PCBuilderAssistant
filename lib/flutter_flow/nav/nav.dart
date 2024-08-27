@@ -137,11 +137,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ProfileWidget(),
         ),
         FFRoute(
-          name: 'OurRecomendation',
-          path: '/ourRecomendation',
-          builder: (context, params) => const OurRecomendationWidget(),
-        ),
-        FFRoute(
           name: 'PreBuildPC',
           path: '/preBuildPC',
           builder: (context, params) => const PreBuildPCWidget(),
@@ -285,11 +280,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const MotherboardListWidget(),
         ),
         FFRoute(
-          name: 'CaseList',
-          path: '/caseList',
-          builder: (context, params) => const CaseListWidget(),
-        ),
-        FFRoute(
           name: 'PsuEdit',
           path: '/psuEdit',
           asyncParams: {
@@ -366,6 +356,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'CaseList',
+          path: '/caseList',
+          builder: (context, params) => const CaseListWidget(),
+        ),
+        FFRoute(
+          name: 'OurRecomendations',
+          path: '/ourRecomendations',
+          builder: (context, params) => const OurRecomendationsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -4,6 +4,10 @@ import 'case_edit_widget.dart' show CaseEditWidget;
 import 'package:flutter/material.dart';
 
 class CaseEditModel extends FlutterFlowModel<CaseEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;

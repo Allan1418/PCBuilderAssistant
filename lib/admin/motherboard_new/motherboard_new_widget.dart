@@ -50,34 +50,31 @@ class _MotherboardNewWidgetState extends State<MotherboardNewWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryText,
           automaticallyImplyLeading: false,
-          leading: Align(
-            alignment: const AlignmentDirectional(1.0, 0.0),
-            child: FFButtonWidget(
-              onPressed: () async {
-                context.pushNamed('HomePage');
-              },
-              text: '',
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                size: 26.0,
+          leading: FFButtonWidget(
+            onPressed: () async {
+              context.safePop();
+            },
+            text: 'Button',
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 25.0,
+            ),
+            options: FFButtonOptions(
+              height: 40.0,
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: const Color(0x004B39EF),
+              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: 'Readex Pro',
+                    color: const Color(0xFF7E6FFF),
+                    letterSpacing: 0.0,
+                  ),
+              elevation: 3.0,
+              borderSide: const BorderSide(
+                color: Colors.transparent,
+                width: 1.0,
               ),
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0x004B39EF),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 3.0,
-                borderSide: const BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+              borderRadius: BorderRadius.circular(8.0),
             ),
           ),
           title: GradientText(
@@ -95,7 +92,35 @@ class _MotherboardNewWidgetState extends State<MotherboardNewWidget> {
             gradientDirection: GradientDirection.ltr,
             gradientType: GradientType.linear,
           ),
-          actions: const [],
+          actions: [
+            FFButtonWidget(
+              onPressed: () async {
+                context.pushNamed('Profile');
+              },
+              text: '',
+              icon: const Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+              options: FFButtonOptions(
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).primaryText,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Readex Pro',
+                      color: const Color(0xFF75E7FF),
+                      letterSpacing: 0.0,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -452,6 +477,8 @@ class _MotherboardNewWidgetState extends State<MotherboardNewWidget> {
                                 );
                               },
                             );
+
+                            context.pushNamed('MotherboardList');
                           },
                           text: 'Save',
                           options: FFButtonOptions(

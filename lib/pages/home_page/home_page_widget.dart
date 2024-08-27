@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -100,12 +101,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(0.0),
                       child: Image.network(
                         'https://media.kingston.com/kingston/content/ktc-content-blog-gaming-set-up-after-pc-build-beast-ddr4-rgb.jpg',
-                        width: 398.0,
-                        height: 243.0,
-                        fit: BoxFit.cover,
+                        width: 390.0,
+                        height: 250.0,
+                        fit: BoxFit.fitWidth,
                       ),
                     ),
                   ),
@@ -202,14 +203,54 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 30.0, 5.0, 20.0),
+                    if (valueOrDefault(currentUserDocument?.rol, '') == 'admin')
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            5.0, 30.0, 5.0, 20.0),
+                        child: AuthUserStreamWidget(
+                          builder: (context) => FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('MenuAdmin');
+                            },
+                            text: 'Admin',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Flexible(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed('ProcessorList');
+                          context.pushNamed('OurRecomendations');
                         },
-                        text: 'Admin',
+                        text: 'Nuestras Recomendaciones',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -229,28 +270,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 40.0, 0.0, 40.0),
-                        child: Text(
-                          'Page recommendations',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
                         ),
                       ),
                     ),
@@ -278,19 +297,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   width: 300.0,
                                   height: 268.0,
                                   fit: BoxFit.cover,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 50.0, 0.0, 0.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    'https://png.pngitem.com/pimgs/s/494-4943503_best-i9-9900ks-gaming-pc-build-2020-pc.png',
-                                    width: 203.0,
-                                    height: 273.0,
-                                    fit: BoxFit.cover,
-                                  ),
                                 ),
                               ),
                             ],

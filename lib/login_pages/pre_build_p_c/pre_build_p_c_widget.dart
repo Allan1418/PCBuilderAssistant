@@ -267,18 +267,22 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                      Text(
+                                      SelectionArea(
+                                          child: Text(
                                         valueOrDefault<String>(
                                           _model.cpuMos?.name,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
-                                      ),
+                                      )),
                                     ],
                                   ),
                                   FFButtonWidget(
@@ -376,11 +380,14 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.motherMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -492,11 +499,14 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.ramMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -608,11 +618,14 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.gpuMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -713,11 +726,14 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.caseMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -818,11 +834,14 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.coolerMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -923,11 +942,14 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.psuMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto Mono',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -1028,6 +1050,9 @@ class _PreBuildPCWidgetState extends State<PreBuildPCWidget> {
                                         valueOrDefault<String>(
                                           _model.storageMos?.nombre,
                                           'Escoge uno!',
+                                        ).maybeHandleOverflow(
+                                          maxChars: 15,
+                                          replacement: '…',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium

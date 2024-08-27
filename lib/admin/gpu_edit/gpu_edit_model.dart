@@ -4,6 +4,10 @@ import 'gpu_edit_widget.dart' show GpuEditWidget;
 import 'package:flutter/material.dart';
 
 class GpuEditModel extends FlutterFlowModel<GpuEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;

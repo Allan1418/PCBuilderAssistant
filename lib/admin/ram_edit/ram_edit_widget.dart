@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'ram_edit_model.dart';
 export 'ram_edit_model.dart';
@@ -33,6 +34,12 @@ class _RamEditWidgetState extends State<RamEditWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RamEditModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.image = widget.ram?.image;
+      setState(() {});
+    });
 
     _model.txtRamNameTextController ??=
         TextEditingController(text: widget.ram?.nombre);
@@ -60,34 +67,31 @@ class _RamEditWidgetState extends State<RamEditWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryText,
           automaticallyImplyLeading: false,
-          leading: Align(
-            alignment: const AlignmentDirectional(1.0, 0.0),
-            child: FFButtonWidget(
-              onPressed: () async {
-                context.pushNamed('HomePage');
-              },
-              text: '',
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                size: 26.0,
+          leading: FFButtonWidget(
+            onPressed: () async {
+              context.safePop();
+            },
+            text: 'Button',
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 25.0,
+            ),
+            options: FFButtonOptions(
+              height: 40.0,
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: const Color(0x004B39EF),
+              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: 'Readex Pro',
+                    color: const Color(0xFF7E6FFF),
+                    letterSpacing: 0.0,
+                  ),
+              elevation: 3.0,
+              borderSide: const BorderSide(
+                color: Colors.transparent,
+                width: 1.0,
               ),
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0x004B39EF),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 3.0,
-                borderSide: const BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+              borderRadius: BorderRadius.circular(8.0),
             ),
           ),
           title: GradientText(
@@ -105,7 +109,35 @@ class _RamEditWidgetState extends State<RamEditWidget> {
             gradientDirection: GradientDirection.ltr,
             gradientType: GradientType.linear,
           ),
-          actions: const [],
+          actions: [
+            FFButtonWidget(
+              onPressed: () async {
+                context.pushNamed('Profile');
+              },
+              text: '',
+              icon: const Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+              options: FFButtonOptions(
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).primaryText,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Readex Pro',
+                      color: const Color(0xFF75E7FF),
+                      letterSpacing: 0.0,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -124,7 +156,7 @@ class _RamEditWidgetState extends State<RamEditWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: Text(
-                          'New Ram',
+                          'Edit Ram',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -139,76 +171,89 @@ class _RamEditWidgetState extends State<RamEditWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Expanded(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 20.0, 0.0, 20.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: FlutterFlowTheme.of(context).primary,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 46.0,
-                          fillColor: FlutterFlowTheme.of(context).accent1,
-                          icon: Icon(
-                            Icons.image,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            final selectedMedia =
-                                await selectMediaWithSourceBottomSheet(
-                              context: context,
-                              allowPhoto: true,
-                            );
-                            if (selectedMedia != null &&
-                                selectedMedia.every((m) => validateFileFormat(
-                                    m.storagePath, context))) {
-                              setState(() => _model.isDataUploading = true);
-                              var selectedUploadedFiles = <FFUploadedFile>[];
-
-                              var downloadUrls = <String>[];
-                              try {
-                                selectedUploadedFiles = selectedMedia
-                                    .map((m) => FFUploadedFile(
-                                          name: m.storagePath.split('/').last,
-                                          bytes: m.bytes,
-                                          height: m.dimensions?.height,
-                                          width: m.dimensions?.width,
-                                          blurHash: m.blurHash,
-                                        ))
-                                    .toList();
-
-                                downloadUrls = (await Future.wait(
-                                  selectedMedia.map(
-                                    (m) async => await uploadData(
-                                        m.storagePath, m.bytes),
-                                  ),
-                                ))
-                                    .where((u) => u != null)
-                                    .map((u) => u!)
-                                    .toList();
-                              } finally {
-                                _model.isDataUploading = false;
-                              }
-                              if (selectedUploadedFiles.length ==
-                                      selectedMedia.length &&
-                                  downloadUrls.length == selectedMedia.length) {
-                                setState(() {
-                                  _model.uploadedLocalFile =
-                                      selectedUploadedFiles.first;
-                                  _model.uploadedFileUrl = downloadUrls.first;
-                                });
-                              } else {
-                                setState(() {});
-                                return;
-                              }
-                            }
-                          },
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          _model.image!,
+                          width: 300.0,
+                          height: 200.0,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      FlutterFlowIconButton(
+                        borderColor: FlutterFlowTheme.of(context).primary,
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        fillColor: FlutterFlowTheme.of(context).accent1,
+                        icon: Icon(
+                          Icons.image,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          final selectedMedia =
+                              await selectMediaWithSourceBottomSheet(
+                            context: context,
+                            allowPhoto: true,
+                          );
+                          if (selectedMedia != null &&
+                              selectedMedia.every((m) =>
+                                  validateFileFormat(m.storagePath, context))) {
+                            setState(() => _model.isDataUploading = true);
+                            var selectedUploadedFiles = <FFUploadedFile>[];
+
+                            var downloadUrls = <String>[];
+                            try {
+                              selectedUploadedFiles = selectedMedia
+                                  .map((m) => FFUploadedFile(
+                                        name: m.storagePath.split('/').last,
+                                        bytes: m.bytes,
+                                        height: m.dimensions?.height,
+                                        width: m.dimensions?.width,
+                                        blurHash: m.blurHash,
+                                      ))
+                                  .toList();
+
+                              downloadUrls = (await Future.wait(
+                                selectedMedia.map(
+                                  (m) async =>
+                                      await uploadData(m.storagePath, m.bytes),
+                                ),
+                              ))
+                                  .where((u) => u != null)
+                                  .map((u) => u!)
+                                  .toList();
+                            } finally {
+                              _model.isDataUploading = false;
+                            }
+                            if (selectedUploadedFiles.length ==
+                                    selectedMedia.length &&
+                                downloadUrls.length == selectedMedia.length) {
+                              setState(() {
+                                _model.uploadedLocalFile =
+                                    selectedUploadedFiles.first;
+                                _model.uploadedFileUrl = downloadUrls.first;
+                              });
+                            } else {
+                              setState(() {});
+                              return;
+                            }
+                          }
+
+                          _model.image = _model.uploadedFileUrl;
+                          setState(() {});
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -426,7 +471,7 @@ class _RamEditWidgetState extends State<RamEditWidget> {
                               frecuencia:
                                   _model.txtFrequencyRamTextController.text,
                               tiporam: _model.txtTipoRamValue,
-                              image: _model.uploadedFileUrl,
+                              image: _model.image,
                             ));
                             await showDialog(
                               context: context,

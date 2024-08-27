@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'processor_edit_model.dart';
 export 'processor_edit_model.dart';
@@ -34,6 +35,12 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
     super.initState();
     _model = createModel(context, () => ProcessorEditModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.image = widget.processor?.image;
+      setState(() {});
+    });
+
     _model.txtProcessorNameTextController ??=
         TextEditingController(text: widget.processor?.name);
     _model.txtProcessorNameFocusNode ??= FocusNode();
@@ -59,34 +66,31 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryText,
           automaticallyImplyLeading: false,
-          leading: Align(
-            alignment: const AlignmentDirectional(1.0, 0.0),
-            child: FFButtonWidget(
-              onPressed: () async {
-                context.pushNamed('HomePage');
-              },
-              text: '',
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                size: 26.0,
+          leading: FFButtonWidget(
+            onPressed: () async {
+              context.safePop();
+            },
+            text: 'Button',
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 25.0,
+            ),
+            options: FFButtonOptions(
+              height: 40.0,
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: const Color(0x004B39EF),
+              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: 'Readex Pro',
+                    color: const Color(0xFF7E6FFF),
+                    letterSpacing: 0.0,
+                  ),
+              elevation: 3.0,
+              borderSide: const BorderSide(
+                color: Colors.transparent,
+                width: 1.0,
               ),
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: const Color(0x004B39EF),
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
-                    ),
-                elevation: 3.0,
-                borderSide: const BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+              borderRadius: BorderRadius.circular(8.0),
             ),
           ),
           title: GradientText(
@@ -104,7 +108,35 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
             gradientDirection: GradientDirection.ltr,
             gradientType: GradientType.linear,
           ),
-          actions: const [],
+          actions: [
+            FFButtonWidget(
+              onPressed: () async {
+                context.pushNamed('Profile');
+              },
+              text: '',
+              icon: const Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+              options: FFButtonOptions(
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).primaryText,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Readex Pro',
+                      color: const Color(0xFF75E7FF),
+                      letterSpacing: 0.0,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -168,10 +200,9 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          final selectedMedia =
-                              await selectMediaWithSourceBottomSheet(
-                            context: context,
-                            allowPhoto: true,
+                          final selectedMedia = await selectMedia(
+                            mediaSource: MediaSource.photoGallery,
+                            multiImage: false,
                           );
                           if (selectedMedia != null &&
                               selectedMedia.every((m) =>
@@ -216,6 +247,9 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                               return;
                             }
                           }
+
+                          _model.image = _model.uploadedFileUrl;
+                          setState(() {});
                         },
                       ),
                     ],
@@ -433,7 +467,7 @@ class _ProcessorEditWidgetState extends State<ProcessorEditWidget> {
                             await widget.processor!.reference
                                 .update(createProcesadorRecordData(
                               name: _model.txtProcessorNameTextController.text,
-                              image: _model.uploadedFileUrl,
+                              image: _model.image,
                               socket: _model.txtSocketValue,
                             ));
                             await showDialog(

@@ -4,6 +4,10 @@ import 'storage_edit_widget.dart' show StorageEditWidget;
 import 'package:flutter/material.dart';
 
 class StorageEditModel extends FlutterFlowModel<StorageEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;

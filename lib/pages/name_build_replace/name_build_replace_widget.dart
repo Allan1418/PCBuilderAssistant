@@ -66,7 +66,7 @@ class _NameBuildReplaceWidgetState extends State<NameBuildReplaceWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                       child: Text(
-                        'Escribe el nuevo \nnombre de tu Build',
+                        'Enter the new\nname of your Build',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
@@ -96,7 +96,7 @@ class _NameBuildReplaceWidgetState extends State<NameBuildReplaceWidget> {
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Nombre...',
+                          labelText: 'Name...',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -166,7 +166,7 @@ class _NameBuildReplaceWidgetState extends State<NameBuildReplaceWidget> {
 
                           context.pushNamed('PreBuildPC');
                         },
-                        text: 'Cambiar',
+                        text: 'Change',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(

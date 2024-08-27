@@ -4,6 +4,10 @@ import 'ram_edit_widget.dart' show RamEditWidget;
 import 'package:flutter/material.dart';
 
 class RamEditModel extends FlutterFlowModel<RamEditWidget> {
+  ///  Local state fields for this page.
+
+  String? image;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;

@@ -64,7 +64,7 @@ class _NameBuildWidgetState extends State<NameBuildWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                       child: Text(
-                        'Escribe el nombre \nde tu nueva Build',
+                        'Enter the name of \nyour new construction.',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
@@ -94,7 +94,7 @@ class _NameBuildWidgetState extends State<NameBuildWidget> {
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Nombre...',
+                          labelText: 'Name...',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -176,7 +176,7 @@ class _NameBuildWidgetState extends State<NameBuildWidget> {
 
                           setState(() {});
                         },
-                        text: 'Crear',
+                        text: 'Create',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
