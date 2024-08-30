@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class SingleProductModel extends FlutterFlowModel<SingleProductWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

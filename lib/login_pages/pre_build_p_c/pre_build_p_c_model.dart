@@ -30,6 +30,7 @@ class PreBuildPCModel extends FlutterFlowModel<PreBuildPCWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Read Document] action in PreBuildPC widget.
   BuildsRecord? salidaRead;
   // Stores action output result for [Backend Call - Read Document] action in PreBuildPC widget.

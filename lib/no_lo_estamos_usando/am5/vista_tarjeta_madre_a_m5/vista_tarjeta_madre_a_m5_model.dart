@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 
 class VistaTarjetaMadreAM5Model
     extends FlutterFlowModel<VistaTarjetaMadreAM5Widget> {
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+
   @override
   void initState(BuildContext context) {}
 
