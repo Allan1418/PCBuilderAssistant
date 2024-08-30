@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class SignupModel extends FlutterFlowModel<SignupWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for firstname widget.
   FocusNode? firstnameFocusNode;
   TextEditingController? firstnameTextController;

@@ -304,9 +304,10 @@ class _StorageListWidgetState extends State<StorageListWidget> {
                                                   builder:
                                                       (alertDialogContext) {
                                                     return AlertDialog(
-                                                      title: const Text('Delete'),
-                                                      content: const Text(
-                                                          'Storage Deleted'),
+                                                      title: const Text(
+                                                          'Delet component'),
+                                                      content:
+                                                          const Text('Storage delet'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>

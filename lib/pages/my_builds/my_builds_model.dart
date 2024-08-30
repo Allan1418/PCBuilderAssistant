@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class MyBuildsModel extends FlutterFlowModel<MyBuildsWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   BuildsRecord? salidaBuild;
 

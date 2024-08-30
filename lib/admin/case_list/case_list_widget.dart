@@ -182,7 +182,11 @@ class _CaseListWidgetState extends State<CaseListWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 10.0, 0.0, 0.0),
                                     child: Text(
-                                      listViewCasepcRecord.nombre,
+                                      listViewCasepcRecord.nombre
+                                          .maybeHandleOverflow(
+                                        maxChars: 7,
+                                        replacement: '…',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

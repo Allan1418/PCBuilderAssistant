@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class LogginModel extends FlutterFlowModel<LogginWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for Email widget.
   FocusNode? emailFocusNode;
   TextEditingController? emailTextController;
